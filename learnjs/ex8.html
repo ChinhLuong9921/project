@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const increment = (function() {
+            return function increment(number, value = 1) { // giá trị mặc định của value sẽ là 1 nếu không truyền argument vào cho value
+                return number + value;
+            };
+        })();
+        // parenthesis ở cuối để js biết đây là hàm
+        // nếu không có thì sẽ trở thành 1 biến bình thường
+
+        console.log(increment(5, 2));
+        console.log(increment(5));
+    </script>
+</body>
+</html>

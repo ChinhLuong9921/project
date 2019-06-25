@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test 5</title>
+</head>
+<body>
+    <script>
+        var profile = [
+            {
+                'firstName': 'Sherlock',
+                'lastName': 'Holmes',
+                'number': '09999999',
+                'likes': ['Intriguing cases', 'Sing']
+            },
+            {
+                'firstName': 'Chinh',
+                'lastName': 'Dinh',
+                'number': '099999991',
+                'likes': ['Coding', 'Sing']
+            }
+        ];
+
+        function lookupProfile(name, prop) {
+            for (var i = 0; i < profile.length; i++) {
+                if (profile[i].firstName === name) {
+                    return profile[i][prop] || 'No such property';
+                }
+            }
+            return 'No such name';
+        }
+
+        console.log(lookupProfile("chinh", 'likes'));
+    </script>
+</body>
+</html>
