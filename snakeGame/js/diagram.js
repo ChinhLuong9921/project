@@ -10,14 +10,17 @@
 // check collision function
 // draw everything to the canvas
 /*
-draw the border of box
+assign the ground to the canvas
+draw tail of the snake
+draw border of the snake
 draw the food
 old head position
 which direction
-sau 
+after every 100ms, snake update will add 1 box
 if the snake eats the food 
 remove the tail
-add new Head
 game over
+add new Head
+draw the score
  */
 // call draw function every 100ms

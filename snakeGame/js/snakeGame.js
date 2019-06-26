@@ -62,7 +62,7 @@ const direction = event => {
         d = 'down';
         down.play();
     }
-}
+};
 
 // addEventListener bắt buộc function phải được khai báo trước đó
 document.addEventListener('keydown', direction);
@@ -77,17 +77,20 @@ const collision = (head, array) => {
 
 // draw everything to the canvas
 const draw = () => {
+    // assign the ground to the canvas
     ctx.drawImage(ground, 0, 0);
     
+    // draw tail of the snake
     for ( let i = 0; i < snake.length; i++) {
         ctx.fillStyle = (i == 0) ? "green" : "white";
         ctx.fillRect(snake[i].x, snake[i].y, box, box);
         
-        // draw the border of box
+        // draw border of the snake
         ctx.strokeStyle = "red";
         ctx.strokeRect(snake[i].x, snake[i].y, box, box);
     }
     
+    // draw the food
     ctx.drawImage(foodImg, food.x, food.y);
     
     // old head position
@@ -109,13 +112,13 @@ const draw = () => {
             x : Math.floor(Math.random() * 17 + 1) * box,
             y : Math.floor(Math.random() * 15 + 3) * box
         };
-    }else {
+    } else {
         // remove the tail
         snake.pop();
     }
     
     // game over
-    if (snakeX < box || snakeX > 17 * box || snakeY < 3*box || snakeY > 17*box || collision(newHead, snake)){
+    if (snakeX < box || snakeX > 17 * box || snakeY < 3 * box || snakeY > 17 * box || collision(newHead, snake)){
         clearInterval(game);
         dead.play();
     }
