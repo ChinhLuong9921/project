@@ -117,17 +117,19 @@ const draw = () => {
         snake.pop();
     }
 
+    // add new Head
+    let newHead = {
+        x: snakeX,
+        y: snakeY
+    };
+    
     // game over
     if (snakeX < box || snakeX > 17 * box || snakeY < 3 * box || snakeY > 17 * box || collision(newHead, snake)){
         clearInterval(game);
         dead.play();
     }
 
-    // add new Head
-    let newHead = {
-        x: snakeX,
-        y: snakeY
-    };
+    
 
     snake.unshift(newHead);
 

@@ -113,6 +113,12 @@ const draw = () => {
         // remove the tail
         snake.pop();
     }
+
+    // add new Head
+    let newHead = {
+        x : snakeX,
+        y : snakeY
+    };
     
     // game over
     if (snakeX < box || snakeX > 17 * box || snakeY < 3*box || snakeY > 17*box || collision(newHead, snake)){
@@ -120,11 +126,7 @@ const draw = () => {
         dead.play();
     }
     
-    // add new Head
-    let newHead = {
-        x : snakeX,
-        y : snakeY
-    };
+    
     snake.unshift(newHead);
     
     // draw the score
