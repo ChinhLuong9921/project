@@ -1,56 +1,38 @@
-/*
-
-context.fillStyle = 'black';
-context.fillRect(100, 200, 50, 75);
-
-context.fillStyle = 'red';
-context.beginPath();
-context.arc(300, 350, 100, 0, Math.PI*2, false);
-context.closePath();
-
-
-*/
 // canvas
 const cvs = document.getElementById('pong');
 const ctx = cvs.getContext('2d');
 
-// function_____________________________________________________________________
+// function____________________________________
 // draw rect function 
 const drawRect = (x, y, w, h, color) => {
-    //'use strict';
     ctx.fillStyle = color;
     ctx.fillRect(x, y, w, h);
 };
 
-//drawRect(0, 0, 600, 400, 'black');
-
 // draw circle
 const drawCircle = (x, y, r, color) => {
-    //'use strict';
     ctx.fillStyle = color;
     ctx.beginPath();
-    ctx.arc(x, y, r, 0, Math.PI*2, false);
+    ctx.arc(x, y, r, 0, Math.PI * 2);
     ctx.closePath();
     ctx.fill();
 };
 
-// draw text
+// draw text 
 const drawText = (text, x, y, color) => {
-    //'use strict';
-    ctx.fillStyle = color;
+    ctx.fillStyle = 'color';
     ctx.font = '45px fantasy';
     ctx.fillText(text, x, y);
 };
 
-// draw net
+// draw net 
 const drawNet = () => {
-    //'use strict';
-    for (let i = 0; i <= cvs.height; i += 15) {
+    for (let i = 0; i <= cvs.height; i+=15) {
         drawRect(net.x, net.y + i, net.width, net.height, net.color);
     }
 };
 
-// // render the canvas: canvas, ball, net, score, paddle
+// render the canvas: canvas, ball, net, score, paddle
 const render = () => {
     //'use strict';
     drawRect(0, 0, cvs.width, cvs.height, 'black');
@@ -64,7 +46,6 @@ const render = () => {
 
 // setup game
 const game = () => {
-    //'use strict';
     update();
     render();
 };
@@ -72,14 +53,13 @@ const game = () => {
 // reset the ball after reloading
 const resetBall = () => {
     ball.x = cvs.width/2;
-    ball.y = cvs.height/2;
-    ball.speed = 5; 
+    ball.y = cvs. height/2;
+    ball.speed = 5;
     ball.velocityX = - ball.velocityX;
-}
+};
 
-// update 
+// update
 const update = () => {
-    //'use strict';
     // update the ball.x
     ball.x += ball.velocityX;
     ball.y += ball.velocityY;
@@ -92,11 +72,11 @@ const update = () => {
     if (ball.y + ball.radius > cvs.height || ball.y - ball.radius < 0) {
         ball.velocityY = - ball.velocityY;
     }
-    
-    // player
+
+    // player 
     let player = (ball.x < cvs.width/2) ? user : com;
 
-    // calculate the direction and speed of reflection after each collision
+    // calculate the direction and speed of reflection after each collision 
     if (collision(ball, player)) {
         let collidePoint = ball.y - (player.y + player.height/2);
         collidePoint = collidePoint / (player.height/2);
@@ -122,7 +102,6 @@ const update = () => {
 
 // calculate the collision
 const collision = (b, p) => {
-    //'use strict';
     b.top = b.y - b.radius;
     b.bottom = b.y + b.radius;
     b.left = b.x - b.radius;
@@ -132,21 +111,17 @@ const collision = (b, p) => {
     p.bottom = p.y + p.height;
     p.left = p.x;
     p.right = p.x + p.width;
-    
-    return b.right > p.left && b.bottom > p.top && b.left < p.right && b.top < p.bottom;
+
+    return b.right > p.left && b.left < p.right && b.top < p.bottom && b.bottom > p.top;
 };
 
 // locate the cursor
-const movePaddle = (evt) => {
-    //'use strict';
+const movePaddle = evt => {
     let rect = cvs.getBoundingClientRect();
     user.y = evt.clientY - rect.top - user.height/2;
-    // rect.top vì khi scroll chuột xuống dưới sẽ khiến định vị của tấm chắn bị thay đổi ko theo ý mình
-    // user.height/2 là đưa con trỏ xuống giữa thanh chắn (trc đó nó nằm ở đầu thanh chắn)
 };
 
-// object_________________________________________________________
-
+// object_________________________________________________
 // user
 const user = {
     x: 0,
@@ -186,7 +161,6 @@ const net = {
     height: 10,
     color: 'white'
 };
-
 
 // game init
 cvs.addEventListener('mousemove', movePaddle);
