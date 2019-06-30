@@ -6,7 +6,7 @@ function Queue () {
         console.log(collection);
     };
     this.enqueue = function(element) {
-        collection.push(element);
+        return collection.push(element);
     };
     this.dequeue = function() {
         return collection.shift(); 
@@ -46,7 +46,6 @@ function PriorityQueue () {
             var added = false;
             for (var i = 0; i < collection.length; i++){
                  if (element[1] < collection[i][1]){
-
                     collection.splice(i,0,element);
                     added = true;
                     break;

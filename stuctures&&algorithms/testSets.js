@@ -1,4 +1,4 @@
-// mySet______________________________
+// mySet__________________________________
 // has
 // values
 // add
@@ -10,83 +10,72 @@
 // subset
 
 function mySet() {
-   var collection = [];
+    var collection = [];
 
-   this.has = function() {
-       return (collection.indexOf() !== -1);
-       // return (collection.length === 0);
-   };
+    this.has = function() {
+        return (collection.indexOf() !== -1);
+    };
 
-   this.values = function() {
-       return collection;
-   };
+    this.values = function() {
+        return collection;
+    };
 
-   this.add = function(e) {
-       if (!this.has(e)) {
-           collection.push(e);
-           return true;
-       }
-       return false;
-   };
+    this.add = function(ele) {
+        if (!this.has) {
+            collection.push(ele);
+            return true;
+        }
+        return false;
+    };
 
-   this.remove = function(ele) {
-       if (this.has(ele)) {
-           var index = collection.indexOf(ele);
-           collection.splice(index, 1);
-           return true;
-       }
-       return false;
-   };
+    this.remove = function(ele) {
+        if (this.has) {
+            var index = collection.indexOf(ele);
+            collection.splice(index, 1);
+            return true;
+        }
+        return false;
+    };
 
-   this.size = function() {
-       return collection.length;
-   };
+    this.union = function(otherSet) {
+        var unionSet = new mySet();
+        var firstSet = this.values();
+        var secondSet = otherSet.values();
+        firstSet.forEach(function(e) {
+            unionSet.add(e);
+        });
+        secondSet.forEach(function(e) {
+            unionSet.add(e);
+        });
+        return unionSet;
+    };
 
-   this.union = function(otherSet) {
-       var unionSet = new mySet();
-       var firstSet = this.values();
-       var secondSet = otherSet.values();
+    this.intersection = function(otherSet) {
+        var intersectionSet = new mySet();
+        var firstSet = this.values();
+        firstSet.forEach(function(e) {
+            if (otherSet.has(e)) {
+                intersectionSet.add(e);
+            }
+        });
+        return intersectionSet;
+    };
 
-       firstSet.forEach((e) => {
-           unionSet.add(e);
-       });
-       secondSet.forEach((e) => {
-           unionSet.add(e);
-       });
-       return unionSet;
-   };
+    this.difference = function(otherSet) {
+        var differenceSet = new mySet();
+        var firstSet = this.values();
+        firstSet.forEach(function(e) {
+            if (!otherSet.has(e)) {
+                differenceSet.add(e);
+            }
+        });
+        return differenceSet;
+    };
 
-   this.intersection = function(otherSet) {
-       var intersectionSet = new mySet();
-       var firstSet = this.values();
-       var secondSet = otherSet.values();
-
-       firstSet.forEach((e) => {
-           if (secondSet.has(e)) {
-               intersectionSet.add(e);
-           }
-       });
-       return false;
-   };
-
-   this.defference = function(otherSet) {
-       var defferenceSet = new mySet();
-       var firstSet = this.values();
-       var secondSet = otherSet.values();
-
-       firstSet.forEach((e) => {
-           if (!secondSet.has(e)) {
-               defferenceSet.add();
-               return true;
-           }
-       });
-       return false;
-   };
-
-   this.subset = function() {
-       var firstSet = this.values();
-       return firstSet.every((value) => {
-           return otherSet.has(value);
-       });
-   };
+    this.subset = function(otherSet) {
+        var firstSet = this.values();
+        return firstSet.every(function(value) {
+            return otherSet.has(value);
+        });
+    };
 }
