@@ -16,7 +16,7 @@ class Node {
       const node = this.root;
       if (node === null) {
         this.root = new Node(data);
-        return;
+        return;  // stop
       } else {
         const searchTree = function(node) {
           if (data < node.data) {
