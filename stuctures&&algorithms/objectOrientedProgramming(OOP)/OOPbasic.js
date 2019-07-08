@@ -2,8 +2,8 @@
 function Rabbit(type) {
     this.type = type;
     this.greeting = function(){
-      console.log(this.type + " rabbit" + " say Hello!");
-    }
+      console.log(this.type + " rabbit say Hello!");
+    };
   }
   
   var blackRabbit = new Rabbit("black");
@@ -20,8 +20,8 @@ function Rabbit(type) {
 
 
   // Prototype_______________________________________________________
-Rabbit.prototype.sayBye = function (){
-   console.log(this.type + " rabbit" + " say GoodBye!");
+Rabbit.prototype.sayBye = function() {
+   console.log(this.type + " rabbit say GoodBye!");
 }
   
 var meowRabbit = new Rabbit("Gau");
@@ -62,12 +62,12 @@ function Student(_name, _school){
     // inheritance
     Person.call(this, _name);
     //____________
-    this.setSchool = function(_school){
+    this.setSchool = function(_school) {
       school = _school;
-    }
-    this.getSchool = function(){
+    };
+    this.getSchool = function() {
       return school;
-    }
+    };
   }
   
   var student = new Student("DinhChinh", "BKU");
