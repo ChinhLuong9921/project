@@ -1,5 +1,5 @@
 // Write a JavaScript program to calculate number of days left 
-// until next Christmas (24/12).
+// until next Christmas (25/12).
 
 const today = new Date();
 const cmas = new Date(today.getFullYear(), 11, 25);
