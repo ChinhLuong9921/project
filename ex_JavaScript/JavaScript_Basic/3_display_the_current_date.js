@@ -5,15 +5,9 @@ mm-dd-yyyy, mm/dd/yyyy or dd-mm-yyyy, dd/mm/yyyy
 */
 
 const today = new Date();
-let days = today.getDate();
-let months = today.getMonth() + 1;
-const years = today.getFullYear();
+let day = today.getDate();
+day = (day < 10) ? '0'+day : day;
+let month = today.getMonth() + 1;
+month = (month < 10) ? '0'+month : month;
 
-if (days < 10) {
-    days = `0${days}`;
-} 
-if (months < 10) {
-    months = `0${months}`;
-}
-
-console.log(`Today: ${days}/${months}/${years}`);
+console.log(`${day}/${month}/${today.getFullYear()}`);

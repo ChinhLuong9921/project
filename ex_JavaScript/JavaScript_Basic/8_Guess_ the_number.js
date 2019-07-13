@@ -16,7 +16,7 @@ if (guess < 1 || guess > 10) {
     if (guess == randomNumber) {
         console.log('Good Work');
     } else {
-        console.log(`Not matched, the result is: ${randomNumber}`);
+        console.log(`Not matched, the result is ${randomNumber}`);
     }
 }
 
