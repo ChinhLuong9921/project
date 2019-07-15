@@ -17,4 +17,4 @@ console.log(filterA('chinh'));
 console.log(filterA('aaaa'));
 console.log(filterA('aaaaaaa'));
 
-// tự nghĩ*****************************************************
+// tự nghĩ****************************************************
