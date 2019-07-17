@@ -1,3 +1,6 @@
+// Write a JavaScript program
+// to replace every character in a given string with the character following it in the alphabet.
+
 function letterChanges(text) {
     let str = text.split('');
     for (let i = 0; i < str.length; i++) {

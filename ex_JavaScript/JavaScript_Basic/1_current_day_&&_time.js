@@ -16,8 +16,6 @@ const dayList = [
     'Saturday'
 ];
 
-console.log('Today is: ' + dayList[day]);
-
 let hours = today.getHours();
 const prepand = (hours >= 12) ? ' PM ' : ' AM ';
 hours = (hours >= 12) ? hours - 12 : hours;
@@ -42,4 +40,5 @@ if (hours === 0 && prepand === ' PM ') {
     }
 } 
 
+console.log('Today is: ' + dayList[day]);
 console.log(`Current time is: ${hours}${prepand} : ${minutes} : ${seconds}`);
