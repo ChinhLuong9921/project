@@ -1,4 +1,5 @@
-// Write a JavaScript program to check if two numbers are in range 40..60 or in the range 70..100 inclusive.
+// Write a JavaScript program
+// to check if two numbers are in range 40..60 or in the range 70..100 inclusive.
 
 const checkNum = (a, b) => {
     if (Math.abs(50 - a) <= 10 || Math.abs(85 - a) <= 15) {

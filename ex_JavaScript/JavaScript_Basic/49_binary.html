@@ -4,20 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Test</title>
+    <title>Binary</title>
 </head>
 <body>
+    <img src="binary.png" alt="binary">
     <script>
-        const s = [3, 4, 5];
-        
-        function editInPlace() {
-            s[0] = 1;
-            s[1] = 9;
-            s[2] = 6;
+        function convertToInteger(str) {
+            return parseInt(str, 2);
         }
-        editInPlace();
-        
-        console.log(s);
+
+        console.log(convertToInteger('10011'));
+
     </script>
 </body>
 </html>

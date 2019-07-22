@@ -12,3 +12,19 @@ function first_and_last(arr) {
 
 console.log(first_and_last([1, 2, 3, 4]));
 console.log(first_and_last([1]));
+
+//_________________________________________________________________________
+
+// The value in an array cannot be changed 
+// unless it is changed in a function
+
+const s = [3, 4, 5];
+
+function editInPlace() {
+  s[0] = 1;
+  s[2] = 2;
+  s[3] = 3;
+}
+
+editInPlace();
+console.log(s);
