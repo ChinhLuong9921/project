@@ -84,3 +84,25 @@ function old_and_even(arr) {
 }
 
 console.log(old_and_even([1, 2, 3, 4, 5, 6]));
+
+//_____________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to check if there is at least one element which occurs in two given sorted arrays of integers.
+
+function similar_arr(arr1, arr2) {
+    let result = false;
+    arr1.map((v1) => {
+      arr2.map((v2) => {
+        if (v1 === v2) {
+          result = true;
+        }
+      });
+    });
+    return result;
+  } 
+  
+  console.log(similar_arr([1, 2, 3], [3, 4, 5]));
+  console.log(similar_arr([1, 2, 3], [1, 2, 3]));
+  console.log(similar_arr([1, 2, 3, 4], [2, 5, 6]));
+  console.log(similar_arr([1, 2, 3], [4, 5, 6]));
