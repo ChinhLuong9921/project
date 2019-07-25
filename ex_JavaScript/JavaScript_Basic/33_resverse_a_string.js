@@ -9,7 +9,7 @@ console.log(string_reverse("www"));
 console.log(string_reverse("JavaScript"));
 // split(): ngăn cách các kí tự trong chuỗi tạo thành mảng
 // reverse(): đảo ngược mảng
-// join(): gộp mảng thành chuỗi (không có ngăn cách phẩy như toString())
+// join(''): gộp mảng thành chuỗi (không có ngăn cách phẩy như toString())
 
 //__________________________________________________________________________________________
 

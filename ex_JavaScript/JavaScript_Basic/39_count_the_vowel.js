@@ -1,7 +1,9 @@
 // Write a JavaScript program to count the number of vowels of a given string.
 
 function vowel_Count(str){ 
-    return str.replace(/[^aeiou]/g, "").length; 
+    return str.replace(/[^aeiou]/g, "");
+    // thay thế những kí tự không phải nguyên âm thành null
+    // trả về toàn bộ các kí tự nguyên âm có trong chuỗi 
 }
 
 console.log(vowel_Count("Python"));

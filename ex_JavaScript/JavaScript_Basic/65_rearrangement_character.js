@@ -9,13 +9,13 @@ function rearrangement_characters(str1, str2) {
     let result = true;
   
     for (let i = 0; i < Math.max(arr1.length, arr2.length); i++) {
-      if (arr1[i] !== arr2[i]) return false; 
+      if (arr1[i] !== arr2[i]) result = false; 
     }
     return result;
-  }
+}
   
-  console.log(rearrangement_characters("xyz", "zyx"));
-  console.log(rearrangement_characters("xyz", "zyp"));
-  console.log(rearrangement_characters('chih', 'chinh'));
-  console.log(rearrangement_characters('cinh', 'nihc'));
+console.log(rearrangement_characters("xyz", "zyx"));
+console.log(rearrangement_characters("xyz", "zyp"));
+console.log(rearrangement_characters('chih', 'chinh'));
+console.log(rearrangement_characters('cinh', 'nihc'));
   
