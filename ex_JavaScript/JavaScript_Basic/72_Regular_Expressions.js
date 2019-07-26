@@ -1,4 +1,17 @@
 // Write a JavaScript program 
+// to remove all characters from a given string that appear more than once.
+
+function appear_more_than_one(str) {
+    return str.replace(/[\w{2,}]/g, '');
+}
+  
+console.log(appear_more_than_one('aaaabbbbc'));
+console.log(appear_more_than_one('abc'));
+// ??????????????????????
+
+//____________________________________________________________________________________________
+
+// Write a JavaScript program 
 // to switch case of the minimum possible number of letters 
 // to make a given string written in the upper case or in the lower case.
 
