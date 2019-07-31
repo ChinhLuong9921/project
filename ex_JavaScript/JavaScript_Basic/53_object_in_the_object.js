@@ -1,3 +1,4 @@
+// (-----------------1--------------------------)
 // Assign attributes to other objects____________
 
 const AGV_TEMPERATURES = {
@@ -12,7 +13,7 @@ function getTempOfTmrw(avgTemperatures) {
   
 console.log((getTempOfTmrw(AGV_TEMPERATURES)));
 
-//___________________________________________________________________
+//___________________________________2________________________________
 
 const LOCAL_FORECAST = {
     today: {min: 72, max: 83},

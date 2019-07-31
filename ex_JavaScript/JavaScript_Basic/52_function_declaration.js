@@ -1,3 +1,4 @@
+// (--------------------1-------------------------)
 // function declararion by const variable
 
 const increment = (function() {
@@ -9,7 +10,7 @@ const increment = (function() {
 // parenthesis ở cuối để js biết đây là hàm
 // nếu không có thì sẽ trở thành 1 biến bình thường
 
-//_____________________________________________________________________________________
+//___________________________________2__________________________________________________
 
 const sum = (function() {
     return function sum(x, y, z) {
@@ -21,7 +22,7 @@ const sum = (function() {
 
 console.log(sum(1, 2, 4));
 
-//____________________________________________________________________
+//___________________________________3_________________________________
 
 const createPerson = (name, age, gender) => ({name, age, gender});
 

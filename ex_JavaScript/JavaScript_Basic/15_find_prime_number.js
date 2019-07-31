@@ -1,3 +1,4 @@
+// (--------------------1---------------------)
 // Write a JavaScript program 
 // to sort an array of all prime numbers between 1 and a given integer.
 
@@ -45,7 +46,7 @@ console.log(primes(9));
 console.log(primes(15));
 console.log(primes(20));
 
-//______________________________________________________________________________________________
+//______________________________________2________________________________________________________
 
 // Write a JavaScript program 
 // to find the smallest prime number strictly greater than a given number.
@@ -68,7 +69,7 @@ console.log(prime_num(10));
 console.log(prime_num(21));
 console.log(prime_num(13));
 
-//__________________________________________________________________________________________________
+//_________________________________________3_________________________________________________________
 
 // Write a JavaScript program to find all distinct prime factors of a given integer
 

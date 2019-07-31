@@ -1,3 +1,4 @@
+// (-------------------1-------------------)
 // Write a JavaScript program
 // to swap the first and last elements of a given array of integers.
 // The array length should be at least 1.
@@ -13,7 +14,7 @@ function first_and_last(arr) {
 console.log(first_and_last([1, 2, 3, 4]));
 console.log(first_and_last([1]));
 
-//_________________________________________________________________________
+//_______________________________2__________________________________________
 
 // The value in an array cannot be changed 
 // unless it is changed in a function
