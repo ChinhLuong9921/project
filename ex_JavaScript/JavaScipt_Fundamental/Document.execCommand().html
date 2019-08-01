@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document.execCommand</title>
+    <link rel="stylesheet" href="Document.execCommand().css" type="text/css">
+</head>
+<body>
+    <div contenteditable="true" spellcheck="false" class="box">
+        <h1>Đánh giá ưu nhược điểm của ngôn ngữ lập trình PHP</h1>
+        <h2>PHP phù hợp với những dự án</h2>
+        <div>
+            <ul>
+                <li>Không quá phức tạp về mặt xử lí tính toán</li>
+                <li>Số lượng truy cập ít hoặc trung bình, hoặc số lượng truy cập nhiều nhưng không quá phức tạp</li>
+                <li>Đặc biệt phù hợp với các bài toán liên quan đến giao diện web</li>
+                <li>Chất lượng Developer ở mức trung bình khá trở lên</li>
+            </ul>
+        </div>
+        <h2>PHP không phù hợp với những dự án</h2>
+        <div>
+            <ul>
+                <li>Yêu cầu realtime, cực kì nhiều kết nối với thời gian xử lí cực nhanh</li>
+                <li>Xử lí số lượng rất lớn request với logic rất phức tạp</li>
+                <li>Cần xử lí data lớn, các bài toán bigdata</li>
+            </ul>
+        </div>
+        <p>Túm lại PHP tuy không thiết kế để giải quyết các bài toán cực kỳ phức tạp nhưng thực tế nó vẫn dùng tốt để handle lượng lớn request và vẫn là một ngôn ngữ lập trình mạnh. Ngoài PHP rất tốt cho những bài toán Web-base nói chung, nhất là những bài toán liên quan đến quản lý hoặc bán hàng.</p>
+    </div>
+
+    <p class="text-center">
+        <button id="bold-btn">Bold</button>
+        <button id="italic-btn">Italic</button>
+        <button id="underline-btn">Underline</button>
+        <button id="strike-through-btn">StrikeThrough</button>
+    </p>
+
+    <p class="text-center">
+        <button id="supscript-btn">Supscript</button>
+        <button id="superscript-btn">Superscript</button>
+    </p>
+
+    <p class="text-center">
+            <button id="color-btn">Color</button>
+            <button id="size-btn">Size</button>
+            <button id="delete-btn">Delete</button>
+            <button id="undo-btn">Undo</button>
+            <button id="redo-btn">Redo</button>
+        </p>
+
+    <script src="Document.execCommand().js"></script>
+</body>
+</html>
