@@ -1,3 +1,6 @@
+// (--------------------------------1----------------------------------)
+// Write a JavaScript program to copy a string to the clipboard.
+
 const copy_to_Clipboard = str => {
     const el = document.createElement('textarea');
     el.value = str;
@@ -19,6 +22,7 @@ const copy_to_Clipboard = str => {
     }
 };
 
+// _______________________2______________________________________________________________________________________________________________________
 // Paragraph
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -70,63 +74,4 @@ document.addEventListener('DOMContentLoaded', () => {
         document.execCommand('redo');
     });
 });
-
-// document.addEventListener("DOMContentLoaded", () => {
-//     const $ = document.querySelector.bind(document);
-//     const boldBtn = $("#bold-btn"),
-//           italicBtn = $("#italic-btn"),
-//           underlineBtn = $("#underline-btn"),
-//           strikeThroughBtn = $("#strike-through-btn"),
-//           subscriptBtn = $("#supscript-btn"),
-//           superscriptBtn = $("#superscript-btn"),
-//           colorBtn = $("#color-btn"),
-//           sizeBtn = $("#size-btn"),
-//           deleteBtn = $("#delete-btn"),
-//           undoBtn = $("#undo-btn"),
-//           redoBtn = $("#redo-btn");
-    
-//     boldBtn.addEventListener("click", () => {
-//       document.execCommand('bold');
-//     });
-    
-//     italicBtn.addEventListener("click", () => {
-//       document.execCommand('italic');
-//     });
-    
-//     underlineBtn.addEventListener("click", () => {
-//       document.execCommand('underline');
-//     });
-    
-//     strikeThroughBtn.addEventListener("click", () => {
-//       document.execCommand('strikeThrough');
-//     });
-    
-//     subscriptBtn.addEventListener("click", () => {
-//       document.execCommand('subscript');
-//     });
-    
-//     superscriptBtn.addEventListener("click", () => {
-//       document.execCommand('superscript');
-//     });
-    
-//     colorBtn.addEventListener("click", () => {
-//       document.execCommand('styleWithCSS', false, true);
-//       document.execCommand('foreColor', false, 'hotpink');
-//     });
-// sizeBtn.addEventListener("click", () => {
-//     document.execCommand('styleWithCSS', false, true);
-//     document.execCommand('fontSize', false, '25px');
-//   });
-  
-//   deleteBtn.addEventListener("click", () => {
-//     document.execCommand('delete');
-//   });
-  
-//   undoBtn.addEventListener("click", () => {
-//     document.execCommand('undo');
-//   });
-  
-//   redoBtn.addEventListener("click", () => {
-//     document.execCommand('redo');
-//   });
-// });
+// ??????????????????????????

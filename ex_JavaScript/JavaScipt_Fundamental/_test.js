@@ -1,20 +1,16 @@
-const copy_to_Clipboard = str => {
-  const el = document.createElement('textarea');
-  el.value = str;
-  el.setAttribute('readonly', '');
-  el.style.position = 'absolute';
-  el.style.left = '-9999px';
-  document.body.appendChild(el);
-  // <textarea readonly="" style="position: absolute; left: -9999px;"></textarea>
+const csv_to_array = (data, delimiter = ',', omitFirstRow = false) =>
+  data
+    .slice(omitFirstRow ? data.indexOf('\n') + 1 : 0)
+    .split('\n')
+    .map(v => v.split(delimiter));
 
-  const selected = document.getSelection().rangeCount > 0 ? document.getSelection().getRangeAt(0) : false;
-  // getSelection().getRangeAt(0) : lấy range từ đoạn text được bôi đen
-  el.select();
-  document.execCommand('copy');
-  document.body.removeChild(el);
-  if (selected) {
-    document.getSelection().removeAllRanges();
-    // xóa range
-    document.getSelection().addRange(selected);
-  }
+const csv_to_json = (data, delimiter = ',') => {
+  const titles = data.slice(0, data.indexOf('\n')).split(delimiter);
+  return data
+           .slice(data.indexOf('\n') + 1)
+           .split('\n')
+           .map(v => {
+             const values = v.split(delimiter);
+             return titles.reduce((obj, titles, idx) => ((obj[titles] = values[idx]), obj), {});
+           });
 };
