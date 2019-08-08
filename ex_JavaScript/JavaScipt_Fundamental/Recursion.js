@@ -27,3 +27,5 @@ const dog = {
 console.log(dig(data, 'level3'));
 console.log(dig(data, 'level4'));
 console.log(dig(dog, 'message'));
+
+// ____________________________________________________________________________________________________________________

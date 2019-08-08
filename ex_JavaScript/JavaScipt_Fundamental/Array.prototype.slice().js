@@ -19,7 +19,7 @@ console.log(csv_to_array('a,b\nc,d'));
 console.log(csv_to_array('a;b\nc;d', ';'));
 console.log(csv_to_array('head1,head2\na,b\nc,d', ',', true));
 
-// ________________________________________________________________________________________________________________________________________________
+// ___________________________________2_____________________________________________________________________________________________________________
 
 // Write a JavaScript program 
 // to convert a comma-separated values (CSV) string to a 2D array of objects. 
@@ -34,7 +34,18 @@ const CSV_to_JSON = (data, delimiter = ',') => {
         const values = v.split(delimiter);
         return titles.reduce((obj, title, idx) => ((obj[title] = values[idx]), obj), {});
       });
-  };
+};
   
-  console.log(CSV_to_JSON('col1,col2\na,b\nc,d'));
-  console.log(CSV_to_JSON('col1;col2\na;b\nc;d', ';'));
+console.log(CSV_to_JSON('col1,col2\na,b\nc,d'));
+console.log(CSV_to_JSON('col1;col2\na;b\nc;d', ';'));
+
+// _______________________________________3_____________________________________________________________________________________
+
+// Write a JavaScript program to find all elements in an given array except for the first one. 
+// Return the whole array if the array's length is 1.
+
+const the_first_one = arr => 
+  arr.length === 1 ? arr : arr.slice(1);
+
+console.log(the_first_one([1, 2, 3, 4, 5, 6]));
+console.log(the_first_one([1]));

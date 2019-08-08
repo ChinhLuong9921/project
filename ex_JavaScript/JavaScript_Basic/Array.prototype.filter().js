@@ -3,9 +3,9 @@
 
 const arr = [4, 5.6, -9.8, 3.5, 66, -75, 1.23, 33];
 
-const squareList = arr => {
-    return arr.filter(num => Number.isInteger(num) && num > 0).map(num => num * num);
-}
+const squareList = arr => 
+  arr.filter(num => Number.isInteger(num) && num > 0).map(num => num * num);
+
 
 console.log(squareList(arr));
 
@@ -174,3 +174,13 @@ function longest_string(arr) {
 }
 
 console.log(longest_string(['x', 'xx', 'xxxxxxxxxx']));
+
+// _______________________________________7____________________________________________________________________________________________________
+
+// Write a JavaScript program to filter out the element(s) of an given array, that have one of the specified values.
+
+const without = (arr, ...args) => arr.filter(v => !args.includes(v));
+
+console.log(without([2, 1, 2, 3], 1, 2));
+console.log(without([2, 1, 2, 3], 3));
+

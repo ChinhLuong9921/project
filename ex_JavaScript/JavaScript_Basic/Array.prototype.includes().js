@@ -95,7 +95,16 @@ function count_even_value(arr, num) {
       } 
     } else return undefined;
     return count;
-  }
+}
   
-  console.log(count_even_value([1, 2, 3, 4, 5, 6], 5));
-  console.log(count_even_value([2, 3, 5, 7, 8], 8));
+console.log(count_even_value([1, 2, 3, 4, 5, 6], 5));
+console.log(count_even_value([2, 3, 5, 7, 8], 8));
+
+// _______________________________________4______________________________________________________________________________
+
+// Write a JavaScript program to filter out the element(s) of an given array, that have one of the specified values.
+
+const without = (arr, ...args) => arr.filter(v => !args.includes(v));
+
+console.log(without([2, 1, 2, 3], 1, 2));
+console.log(without([2, 1, 2, 3], 3));

@@ -14,3 +14,12 @@ function remove_all(str) {
 
 console.log(remove_all('aaaaabbbbc'));
 console.log(remove_all('1234444555'));
+
+// ____________________________________________________________________________________________________________________________________
+
+// Write a JavaScript program to filter out the non-unique values in an array.
+
+const filter_non_unique = arr => 
+  arr.filter(i => arr.indexOf(i) === arr.lastIndexOf(i));
+
+console.log(filter_non_unique([1, 2, 3, 3, 4, 4, 5]));
