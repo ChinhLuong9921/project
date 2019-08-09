@@ -136,3 +136,13 @@ const squareList = arr => {
 }
 
 console.log(squareList(arr));
+
+// __________________________________________8____________________________________________________________________________________________________
+
+// Write a JavaScript program to get the sum of an given array, 
+// after mapping each element to a value using the provided function.
+
+const sum_by = (arr, fn) => 
+  arr.map(typeof fn === 'function' ? fn : val => val[fn]).reduce((acc, val) => acc + val, 0);
+
+console.log(sum_by([{n: 1}, {n: 2}, {n: 5}, {n: 10}], o => o.n));

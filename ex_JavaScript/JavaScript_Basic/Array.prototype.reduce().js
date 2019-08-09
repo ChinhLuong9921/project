@@ -48,3 +48,25 @@ function accumulate(iterable, func = (x, y) => x + y) {
 console.log(accumulate([1, 2, 3, 4, 5]));
 console.log(accumulate([1, 2, -3, 4, -5, 6]));
 // ???????????????????????
+
+// _____________________________3________________________________________________________________________________________
+
+// Write a JavaScript program to get the sum of an given array, 
+// after mapping each element to a value using the provided function.
+
+const sum_by = (arr, fn) => 
+  arr.map(typeof fn === 'function' ? fn : val => val[fn]).reduce((acc, val) => acc + val, 0);
+
+console.log(sum_by([{n: 1}, {n: 2}, {n: 5}, {n: 10}], o => o.n));
+
+// __________________________________4____________________________________________________________________________________________
+
+// Write a JavaScript program to remove the key-value pairs corresponding to the given keys from an object.
+ 
+const omit = (obj, arr) => 
+  Object.keys(obj)
+    .filter(k => !arr.includes(k))
+    .reduce((acc, key) => ((acc[key] = obj[key]), acc), {});
+
+console.log(omit({a: 1, b: 2, c: 3}, ['a']));
+console.log(omit({a: 'abc', abc: 'abcd', abcd: 'abcde'}, ['a', 'abcd']));

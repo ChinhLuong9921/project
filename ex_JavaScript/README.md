@@ -6,18 +6,26 @@
   * 3: snakeGame
   * 4: ex_JavaScript
 * x.1.x: tên file bên trong project
-* x.x.x: lần update file trong project
+* x.x.1: lần update file trong project
 
 
 ## Commit message
-* feat: thêm một feature
-* fix: fix bug cho hệ thống
-* refactor: sửa code nhưng không fix bug cũng không thêm feature hoặc đôi khi cũng bug cũng được fix từ việc refactor.
-* chore: một số thay đổi lặt vặt
-* docs: thêm/thay đổi document
-* style: những thay đổi không làm thay đổi ý nghĩa của code như thay đổi css/ui chẳng hạn.
-* perf: code cải tiến về mặt hiệu năng xử lý
-* vendor: cập nhật version cho các dependencies, packages.
+* feat: 
+  * thêm một feature
+* fix: 
+  * fix bug cho hệ thống
+* refactor: 
+  * sửa code nhưng không fix bug cũng không thêm feature hoặc đôi khi cũng bug cũng được fix từ việc refactor.
+* chore: 
+  * một số thay đổi nhỏ
+* docs: 
+  * thêm/thay đổi document
+* style: 
+  * những thay đổi không làm thay đổi ý nghĩa của code như thay đổi css/ui...
+* perf: 
+  * code cải tiến về mặt hiệu năng xử lý
+* vendor: 
+  * cập nhật version cho các dependencies, packages.
 
 
 ## ex_JavaScript

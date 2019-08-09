@@ -85,3 +85,16 @@ const union_With = (a, b, comp) =>
 console.log(union_With([1, 1.2, 1.5, 3, 0], [1.9, 3, 0, 3.9], (a, b) => Math.round(a) === Math.round(b)));
 console.log(union_With([1, 2, 3, 4], [1, 2, 3, 4, 5], (a, b) => Math.round(a) === Math.round(b)));
 // ???????????????????????
+
+// ___________________________________6_______________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to create a function that invokes each provided function with the arguments it receives and returns the results.
+
+const over = (...fns) => (...args) => fns.map(fn => fn.apply(null, args));
+const minMax = over(Math.min, Math.max);
+
+console.log(minMax(1, 2, 3, 4, 5)); 
+console.log(minMax(1, 2, 5, 4, 3)); 
+console.log(minMax(1, 2, 5, -4, 3));
+// ?????????????

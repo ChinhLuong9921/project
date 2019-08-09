@@ -31,6 +31,14 @@ if (guess < 1 || guess > 10) {
     }
 }
 
+// ______________________________________________________________________________________________________________________________
+
+const get_random = (start, end) => 
+  Math.random() * (end - start) + start;
+
+console.log(get_random(1, 2));
+console.log(get_random(1, 10));
+
 // ____________________________________3____________________________________________________________________________
 
 // Write a JavaScript program 
@@ -435,3 +443,15 @@ console.log(to_Safe_Integer('32332'));
 console.log(to_Safe_Integer('12.34353456'));
 console.log(to_Safe_Integer(Infinity));
 console.log(Infinity);
+
+// __________________________________20_______________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to get an array of given n random integers in the specified range.
+
+
+const random_intArray_In_Range = (min, max, length = 1) =>
+  Array.from({length: length}, () => Math.floor(Math.random() * (max - min + 1)) + min);
+
+console.log(random_intArray_In_Range(1, 60, 5));
+console.log(random_intArray_In_Range(23, 534, 13));

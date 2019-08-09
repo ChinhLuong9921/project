@@ -11,4 +11,16 @@ console.log(
 console.log(
     matches({ hair: 'long', beard: true }, { age: 25, hair: 'long', beard: true })); // false
 console.log(
-    matches({ hair: 'long', beard: true }, { age: 26, hair: 'long', beard: true })); // false
+matches({ hair: 'long', beard: true }, { age: 26, hair: 'long', beard: true })); // false
+
+// __________________________________2_______________________________________________________________________-
+
+// // Write a JavaScript program to remove the key-value pairs corresponding to the given keys from an object.
+ 
+const omit = (obj, arr) => 
+  Object.keys(obj)
+    .filter(k => !arr.includes(k))
+    .reduce((acc, key) => ((acc[key] = obj[key]), acc), {});
+
+console.log(omit({a: 1, b: 2, c: 3}, ['a']));
+console.log(omit({a: 'abc', abc: 'abcd', abcd: 'abcde'}, ['a', 'abcd']));
