@@ -146,3 +146,25 @@ const sum_by = (arr, fn) =>
   arr.map(typeof fn === 'function' ? fn : val => val[fn]).reduce((acc, val) => acc + val, 0);
 
 console.log(sum_by([{n: 1}, {n: 2}, {n: 5}, {n: 10}], o => o.n));
+
+// __________________________________________9__________________________________________________________________________________________________________
+
+// Write a JavaScript program to create an array of key-value pair arrays from an given object.
+
+const object_to_pairs = obj => Object.keys(obj).map(k => [k, obj[k]]);
+
+console.log(object_to_pairs({a: 1, b: 2}));
+console.log(object_to_pairs({a: 122, b: 123, c: 1244}));
+
+// ___________________________________________10_______________________________________________________________________________________________________________
+
+// Write a JavaScript program to group the elements of an given array based on the given function.
+const group_By = (arr, fn) =>
+  arr.map(typeof fn === 'function' ? fn : val => val[fn]).reduce((acc, val, i) => {
+    acc[val] = (acc[val] || []).concat(arr[i]);
+    // ??????????????
+    return acc;
+  }, {});
+console.log(group_By([6.1, 4.2, 6.3], Math.sqrt)); 
+console.log(group_By([6.1, 4.2, 6.3], Math.floor)); 
+console.log(group_By(['one', 'two', 'three'], 'length'));

@@ -186,12 +186,44 @@ console.log(without([2, 1, 2, 3], 3));
 
 // _________________________________8_____________________________________________________________________________________________________________________
 
-// // Write a JavaScript program to remove the key-value pairs corresponding to the given keys from an object.
+// Write a JavaScript program to remove the key-value pairs corresponding to the given keys from an object.
  
 const omit = (obj, arr) => 
   Object.keys(obj)
     .filter(k => !arr.includes(k))
+    // lọc ra các phần tử không có trong arr
     .reduce((acc, key) => ((acc[key] = obj[key]), acc), {});
+    // gán các key-value pair cho object acc mới
 
 console.log(omit({a: 1, b: 2, c: 3}, ['a']));
 console.log(omit({a: 'abc', abc: 'abcd', abcd: 'abcde'}, ['a', 'abcd']));
+
+// __________________________________9___________________________________________________________________________________________________________________
+
+// Write a JavaScript program to remove falsey values from an given array.
+
+const compact = arr => arr.filter(Boolean);
+
+console.log(compact([0, 1, false, 2, '', 3, 'a', 'e' * 23, NaN, 's', 234]));
+  
+// ___________________________________10___________________________________________________________________________________________________________________________
+
+// The Object.getPrototypeOf() method returns the prototype 
+// (i.e. the value of the internal [[Prototype]] property) of the specified object.
+
+const functions = (obj, inherited = false) => 
+  (inherited
+    ? [...Object.keys(obj), ...Object.keys(Object.getPrototypeOf(obj))]
+    // ...Object.keys(Object.getPrototypeOf(obj)): 
+    // dùng để lấy prototype của object nhưng được khai báo bên ngoài object
+    : Object.keys(obj)
+  ).filter(key => typeof obj[key] === 'function');
+
+function Foo() {
+  this.a = () => 1;
+  this.b = () => 2;
+}
+Foo.prototype.c = () => 3;
+
+console.log(functions(new Foo()));
+console.log(functions(new Foo(), true));

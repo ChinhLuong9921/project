@@ -111,12 +111,14 @@ console.log(without([2, 1, 2, 3], 3));
 
 // ________________________________________5_____________________________________________________________________________
 
-// // Write a JavaScript program to remove the key-value pairs corresponding to the given keys from an object.
+// Write a JavaScript program to remove the key-value pairs corresponding to the given keys from an object.
  
 const omit = (obj, arr) => 
   Object.keys(obj)
     .filter(k => !arr.includes(k))
+    // lọc ra các phần tử không có trong arr
     .reduce((acc, key) => ((acc[key] = obj[key]), acc), {});
+    // gán các key-value pair cho object acc mới
 
 console.log(omit({a: 1, b: 2, c: 3}, ['a']));
 console.log(omit({a: 'abc', abc: 'abcd', abcd: 'abcde'}, ['a', 'abcd']));

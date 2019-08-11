@@ -292,3 +292,38 @@ function break_url(url) {
 
 console.log(break_url('https://www.w3resource.com/javascript-exercise'));
 //?????????????????????????????????????
+
+// ___________________________________________11______________________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to retrieve a set of properties indicated by the given selectors from an object.
+
+const get = (from, ...selectors) =>
+  [...selectors].map(s =>
+    s
+      .replace(/\[([^\[\]]*)\]/g, '.$1.')
+      // ??????????????????
+      .split('.')
+      .filter(t => t !== '')
+      .reduce((prev, cur) => prev && prev[cur], from)
+  );
+const obj = { selector: { to: { val: 'val to select' } }, target: [1, 2, { a: 'test' }] };
+
+console.log(get(obj, 'selector.to.val', 'target[0]', 'target[2].a')); 
+
+// _____________________________________12___________________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to get an object containing the parameters of the current URL. 
+
+const get_URL_Parameters = url =>
+(url.match(/([^?=&]+)(=([^&]*))/g) || []).reduce(
+  // (=(...)): ?????????
+  (a, v) => ((a[v.slice(0, v.indexOf('='))] = v.slice(v.indexOf('=') + 1)), a),
+  {}
+);
+
+console.log(get_URL_Parameters('http://url.com/page?name=Adam&surname=Smith')); 
+console.log(get_URL_Parameters('google.com'));
+console.log(get_URL_Parameters('https://www.w3resource.com'));
+// ??????????????????
