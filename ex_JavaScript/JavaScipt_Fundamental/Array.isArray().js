@@ -1,3 +1,5 @@
+// (------------------------------------1-----------------------------------)
+
 // Write a JavaScript program to filter out the specified values from an specified array. 
 // Return the original array without the filtered values.
 
@@ -22,3 +24,11 @@ function filter_out_in_arr(arr, target) {
   
 console.log(filter_out_in_arr([1, 2, 3, 4, 5, 5], 5));
 console.log(filter_out_in_arr(['a', 'b', 'c', 'd', 'e'], 'd'));
+
+// _______________________________________2_______________________________________________________________________________________
+
+// Write a JavaScript program to cast the provided value as an array if it's not one.
+
+const castArray = val => (Array.isArray(val) ? val : [val]);
+console.log(castArray('w3r')); 
+console.log(castArray([100]));

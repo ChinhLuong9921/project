@@ -1,28 +1,12 @@
 // (------------------------------------1--------------------------)
 // Write a JavaScript program to reverse the elements of a given array of integers length 3.
 
-function reverse_arr(arr) {
-    let newArr = [];
-    for (let i = arr.length - 1; i >= 0; i--) {
-        newArr.push(arr[i]);
-    }
-    return newArr;
-}
+const reverse_arr = arr => 
+  arr.map((val, idx) => arr[arr.length - idx - 1]);
 
-console.log(reverse_arr([1, 2, 3]));
-console.log(reverse_arr([3, 2, 1]));
-
-//_________________________________________________________________________________________________
-function reverse3(array) {
-    return array.map((element, idx, arr) => arr[(arr.length - 1) - idx]);
-    // element: currentValue
-    // idx: index
-    // arr: array
-}
-
-console.log(reverse3([5, 4, 3])); 
-console.log(reverse3([1, 0, -1]));  
-console.log(reverse3([2, 3, 1]));
+console.log(reverse_arr([5, 4, 3])); 
+console.log(reverse_arr([1, 0, -1]));  
+console.log(reverse_arr([2, 3, 1]));
 
 //_____________________________________2_____________________________________________
 
@@ -30,13 +14,11 @@ console.log(reverse3([2, 3, 1]));
 // to find the larger value between the first or last and set all the other elements with that value.
 // Display the new array.
 
-function larger_in_arr(nums) {
-    const max_val = nums[0] > nums[2] ? nums[0] : nums[2];
-    return nums.map((ele, idx, nums) => nums[idx] = max_val); 
-}
+const larger_in_arr = nums => 
+  nums.map((e, i) => nums[i] = Math.max(nums[0], nums[2]));
 
 console.log(larger_in_arr([1, 2, 3]));
-console.log(larger_in_arr([2, 3, 2]));
+console.log(larger_in_arr([2, 3, 5]));
 
 //_______________________________________3_____________________________________________
 
@@ -54,16 +36,15 @@ function longest_in_arr(arr) {
 
 console.log(longest_in_arr(['aa', 'aaa', 'aaaaa']));
 console.log(longest_in_arr(['cccc', '', 'cc', 'ccccccccccccc']));
+
 //___________________________________________________________________________________________
 
-function longest_string(arr) {
-    let max = arr[0].length;
-    arr.map(value => max = Math.max(max, value.length));
-    // lần lượt so sánh các value trong array với max để gán max với length lớn nhất
-    return arr.filter(value => value.length == max);
-}
+const longest_in_arr_ = arr => 
+  arr.reduce((acc, val, idx) => acc = Math.max(acc, arr[idx].length), 0);
 
-console.log(longest_string(['x', 'xx', 'xxxxxxxxxx']));
+console.log(longest_in_arr_(['aa', 'aaa', 'aaaaa']));
+console.log(longest_in_arr_(['cccc', '', 'cc', 'ccccccccccccc']));
+console.log(longest_in_arr_(['aa', 'aaa', 'aaaaa', 'adskfjkfja']));
 
 //_____________________________________4___________________________________________________________
 
@@ -75,34 +56,28 @@ console.log(longest_string(['x', 'xx', 'xxxxxxxxxx']));
 // [1, 4, 7] && [3, 5, 9]
 // [12, 17]
 
-function old_and_even(arr) {
-    const result = [0, 0];
-    arr.map((val, idx, arr) => {
-        if (idx % 2) result[1] += arr[idx];
-        else result[0] += arr[idx];
-    });
-    return result;
-}
+const old_and_even = arr => 
+  arr
+    .reduce((acc, val, i) => (acc[(i%2) ? 0 : 1].push(val), acc), [[], []])
+    .map((val) => val.reduce((acc, v) => acc + v, 0));
+  
 
-console.log(old_and_even([1, 2, 3, 4, 5, 6]));
+console.log(old_and_even([1, 2, 3, 4, 5]));
+console.log(old_and_even([1, 2, 3, 4, 5, 6, 7]));
 
 //______________________________________5_______________________________________________________
 
 // Write a JavaScript program 
 // to check if there is at least one element which occurs in two given sorted arrays of integers.
 
-function similar_arr(arr1, arr2) {
-    let result = false;
-    arr1.map((v1) => {
-      arr2.map((v2) => {
-        if (v1 === v2) {
-          result = true;
-        }
-      });
-    });
-    return result;
-} 
-  
+const similar_arr = (arr1, arr2) => {
+  let result = false;
+  arr1.map((v1) => arr2.map((v2) => {
+      if (v1 === v2) result = true;
+  }));
+  return result;
+};
+
 console.log(similar_arr([1, 2, 3], [3, 4, 5]));
 console.log(similar_arr([1, 2, 3], [1, 2, 3]));
 console.log(similar_arr([1, 2, 3, 4], [2, 5, 6]));
@@ -112,30 +87,23 @@ console.log(similar_arr([1, 2, 3], [4, 5, 6]));
 
 // Multiply values ​​in a multi-layer array
 
-function multiplyAll(arr) {
-    let product = 1;
-    arr.map((v1, i1, arr) => {
-      arr[i1].map((v2, i2) => product *= arr[i1][i2]);
-      //arr[i1].reduce((a, b) => product = product * a * b); ?????
-    });
-    return product;
-}
-  
+const multiplyAll = arr => 
+    arr.reduce((acc, val, i) => (arr[i].map((v2, i2) => acc *= arr[i][i2]), acc), 1);
+    // ((...), acc): kết quả sẽ trả về acc
+
 console.log(multiplyAll([[1, 2], [3, 4], [5, 6, 7]]));
 console.log(multiplyAll([[1, 2], [1, 1]]));
-//??????????????????????????
 
 // ______________________________________7________________________________________________________________________________________________
 
 // Filter array into itergers and square them.
 
-const arr = [4, 5.6, -9.8, 3.5, 66, -75, 1.23, 33];
+const squareList = arr => 
+  arr
+    .filter(num => Number.isInteger(num) && num > 0)
+    .map(num => num * num);
 
-const squareList = arr => {
-    return arr.filter(num => Number.isInteger(num) && num > 0).map(num => num * num);
-}
-
-console.log(squareList(arr));
+console.log(squareList([4, 5.6, -9.8, 3.5, 66, -75, 1.23, 33]));
 
 // __________________________________________8____________________________________________________________________________________________________
 
@@ -143,10 +111,11 @@ console.log(squareList(arr));
 // after mapping each element to a value using the provided function.
 
 const sum_by = (arr, fn) => 
-  arr.map(typeof fn === 'function' ? fn : val => val[fn]).reduce((acc, val) => acc + val, 0);
+  arr
+    .map(typeof fn === 'function' ? fn : val => val[fn])
+    .reduce((acc, val) => acc + val, 0);
 
 console.log(sum_by([{n: 1}, {n: 2}, {n: 5}, {n: 10}], o => o.n));
-
 // __________________________________________9__________________________________________________________________________________________________________
 
 // Write a JavaScript program to create an array of key-value pair arrays from an given object.
@@ -159,12 +128,60 @@ console.log(object_to_pairs({a: 122, b: 123, c: 1244}));
 // ___________________________________________10_______________________________________________________________________________________________________________
 
 // Write a JavaScript program to group the elements of an given array based on the given function.
+
 const group_By = (arr, fn) =>
-  arr.map(typeof fn === 'function' ? fn : val => val[fn]).reduce((acc, val, i) => {
-    acc[val] = (acc[val] || []).concat(arr[i]);
-    // ??????????????
-    return acc;
-  }, {});
+  arr
+    .map(typeof fn === 'function' ? fn: val => val[fn])
+    .reduce((acc, val, i) => (acc[val] = (acc[val] || []).concat(arr[i]), acc), {});
+    // ((...), acc): kết quả trả về acc
+    // acc[val]: tạo ra key bên trong đối tượng acc
+    // .concat(arr[i]): ghép value của arr cũ vào với key mới 
+    // i là key của arr cũ, có nó thì key mới sẽ tìm được value của nó
+
 console.log(group_By([6.1, 4.2, 6.3], Math.sqrt)); 
 console.log(group_By([6.1, 4.2, 6.3], Math.floor)); 
 console.log(group_By(['one', 'two', 'three'], 'length'));
+
+// ____________________________________________11_________________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to Initialize a two dimension array of given width and height and value.
+
+const initialize_2D_Array = (w, h, val = null) =>
+  Array.from({ length: h }).map(() => Array.from({ length: w }).fill(val));
+  // {length: h}: đối tượng miêu tả chiều dài mà Array.from sắp tạo ra
+  // fill: điền val mới vào arr
+
+
+console.log(initialize_2D_Array(2, 2, 0));
+console.log(initialize_2D_Array(3, 3, 3));
+
+// ___________________________________12____________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to initialize an array containing the numbers 
+// in the specified range where start and end are inclusive with their common difference step.
+
+const initialize_Array_With_Range = (end, start = 0, step = 1) =>
+  Array
+    .from({ length: Math.ceil((end + 1 - start) / step) })
+    .map((v, i) => i * step + start);
+
+console.log(initialize_Array_With_Range(5)); 
+console.log(initialize_Array_With_Range(8, 3));  
+console.log(initialize_Array_With_Range(6, 0, 2));  
+
+// _________________________________________13____________________________________________________________________________________________--
+
+// Write a JavaScript program to compute the average of an array, 
+// after mapping each element to a value using the provided function.
+
+const averageBy = (arr, fn) =>
+  arr
+    .map(typeof fn === 'function' ? fn : val => val[fn])
+    .reduce((acc, val) => acc + val, 0) 
+    / arr.length;
+
+console.log(averageBy([{ a: 40 }, { a: 20 }, { a: 80 }, { a: 60 }], o => o.a));
+console.log(averageBy([{ a: 4 }, { a: 2 }, { a: 8 }, { a: 6 }], 'a'));
+

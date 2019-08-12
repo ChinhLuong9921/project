@@ -72,4 +72,12 @@ const equals = (a, b) => {
 
 console.log(equals({ a: [2, { e: 3 }], b: [4], c: 'foo' }, { a: [2, { e: 3 }], b: [4], c: 'foo' }));
 
+// ______________________________________________________________________________________________________________________________________
+
+// Write a JavaScript program to check if all elements in a given array are equal or not.
+
+const allEqual = arr => arr.every(val => val === arr[0]);
+
+console.log(allEqual([1, 2, 3, 4, 5, 6]));
+console.log(allEqual([12, 12, 12, 12]));
 

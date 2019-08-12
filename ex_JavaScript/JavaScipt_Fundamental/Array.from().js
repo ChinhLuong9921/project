@@ -32,3 +32,33 @@ const random_intArray_In_Range = (min, max, length = 1) =>
 
 console.log(random_intArray_In_Range(1, 60, 5));
 console.log(random_intArray_In_Range(23, 534, 13));
+
+// _______________________________________3____________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to Initialize a two dimension array of given width and height and value.
+
+const initialize_2D_Array = (w, h, val = null) =>
+  Array.from({ length: h }).map(() => Array.from({ length: w }).fill(val));
+  // {length: h}: đối tượng miêu tả chiều dài mà Array.from sắp tạo ra
+  // fill: điền val mới vào arr
+
+
+console.log(initialize_2D_Array(2, 2, 0));
+console.log(initialize_2D_Array(3, 3, 3));
+
+// ___________________________________4____________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to initialize an array containing the numbers 
+// in the specified range where start and end are inclusive with their common difference step.
+
+const initialize_Array_With_Range = (end, start = 0, step = 1) =>
+  Array
+    .from({ length: Math.ceil((end + 1 - start) / step) })
+    .map((v, i) => i * step + start);
+
+console.log(initialize_Array_With_Range(5)); 
+console.log(initialize_Array_With_Range(8, 3));  
+console.log(initialize_Array_With_Range(6, 0, 2));  
+

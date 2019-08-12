@@ -455,3 +455,19 @@ const random_intArray_In_Range = (min, max, length = 1) =>
 
 console.log(random_intArray_In_Range(1, 60, 5));
 console.log(random_intArray_In_Range(23, 534, 13));
+
+// ___________________________________4____________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to initialize an array containing the numbers 
+// in the specified range where start and end are inclusive with their common difference step.
+
+const initialize_Array_With_Range = (end, start = 0, step = 1) =>
+  Array
+    .from({ length: Math.ceil((end + 1 - start) / step) })
+    .map((v, i) => i * step + start);
+
+console.log(initialize_Array_With_Range(5)); 
+console.log(initialize_Array_With_Range(8, 3));  
+console.log(initialize_Array_With_Range(6, 0, 2));  
+

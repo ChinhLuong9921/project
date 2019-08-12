@@ -327,3 +327,30 @@ console.log(get_URL_Parameters('http://url.com/page?name=Adam&surname=Smith'));
 console.log(get_URL_Parameters('google.com'));
 console.log(get_URL_Parameters('https://www.w3resource.com'));
 // ??????????????????
+
+// __________________________________13___________________________________________________________________________________________________________________________
+
+// Write a JavaScript program to Join all given URL segments together, 
+// then normalizes the resulting URL.
+
+const URL_Join = (...args) =>
+  args
+    .join('/')
+    .replace(/[\/]+/g, '/')
+    .replace(/^(.+):\//, '$1://')
+    .replace(/^file:/, 'file:/')
+    .replace(/\/(\?|&|#[^!])/g, '$1')
+    .replace(/\?/g, '&')
+    .replace('&', '?');
+
+console.log(URL_Join('http://www.google.com', 'a', '/b/cd', '?foo=123', '?bar=foo'));
+
+// ________________________________________14_______________________________________________________________________________
+
+// Write a JavaScript program to clone a given regular expression.
+
+const cloneRegExp = regExp => new RegExp(regExp.source, regExp.flags);
+const regExp = /lorem ipsum/gi;
+console.log(regExp);
+const regExp2 = cloneRegExp(regExp);
+console.log(regExp2);

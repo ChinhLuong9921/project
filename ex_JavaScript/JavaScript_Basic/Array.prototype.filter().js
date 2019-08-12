@@ -1,13 +1,12 @@
 // (---------------------1-----------------------)
 // Filter array into itergers and square them.
 
-const arr = [4, 5.6, -9.8, 3.5, 66, -75, 1.23, 33];
-
 const squareList = arr => 
-  arr.filter(num => Number.isInteger(num) && num > 0).map(num => num * num);
+  arr
+    .filter(num => Number.isInteger(num) && num > 0)
+    .map(num => num * num);
 
-
-console.log(squareList(arr));
+console.log(squareList([4, 5.6, -9.8, 3.5, 66, -75, 1.23, 33]));
 
 //________________________________2______________________________________________________________
 
@@ -158,7 +157,7 @@ function longest_in_arr(arr) {
     arr.map((ele, idx, arr) => {
         longest.length < arr[idx];
         longest = arr[idx];
-    })
+    });
     return longest;
 }
 
@@ -166,14 +165,13 @@ console.log(longest_in_arr(['aa', 'aaa', 'aaaaa']));
 console.log(longest_in_arr(['cccc', '', 'cc', 'ccccccccccccc']));
 //___________________________________________________________________________________________
 
-function longest_string(arr) {
-    let max = arr[0].length;
-    arr.map(value => max = Math.max(max, value.length));
-    // lần lượt so sánh các value trong array với max để gán max với length lớn nhất
-    return arr.filter(value => value.length == max);
-}
 
-console.log(longest_string(['x', 'xx', 'xxxxxxxxxx']));
+const longest_in_arr_ = arr => 
+  arr.reduce((acc, val, idx) => acc = Math.max(acc, arr[idx].length), 0);
+
+console.log(longest_in_arr_(['aa', 'aaa', 'aaaaa']));
+console.log(longest_in_arr_(['cccc', '', 'cc', 'ccccccccccccc']));
+console.log(longest_in_arr_(['aa', 'aaa', 'aaaaa', 'adskfjkfja']));
 
 // _______________________________________7____________________________________________________________________________________________________
 

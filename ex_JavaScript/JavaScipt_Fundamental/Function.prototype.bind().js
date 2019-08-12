@@ -1,3 +1,5 @@
+// (--------------------------------------1---------------------------------)
+
 // Write a JavaScript program to curry (curries) a function
 // According to wiki.haskell.org "Currying is the process of transforming a function that takes multiple arguments into a function 
 // that takes just a single argument and returns another function 
@@ -15,3 +17,21 @@ const curry = (fn, arity = fn.length, ...args) =>
   arity <= args.length ? fn(...args) : curry.bind(null, fn, arity, ...args);
 console.log(curry(Math.pow)(2)(8));
 console.log(curry(Math.min, 3)(10)(50)(2));
+
+// _______________________________________2__________________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to create a function that invokes fn with a given context, 
+// optionally adding any additional supplied parameters to the beginning of the arguments.
+
+const bind = (fn, context, ...args) =>
+  function() {
+    return fn.apply(context, args.concat(...arguments));
+  };
+function greet(greeting, punctuation) {
+  return greeting + ' ' + this.user + punctuation;
+}
+const freddy = { user: 'Morning' };
+const freddyBound = bind(greet, freddy);
+
+console.log(freddyBound('Good', '!'));
