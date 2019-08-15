@@ -15,33 +15,30 @@ console.log(squareList([4, 5.6, -9.8, 3.5, 66, -75, 1.23, 33]));
 const prime_seq = num => {
     let prime_arr = [];
     let flag;
-
     for (let i = 2; i <= num; i++) {
-        flag = true;
-        for (let j = 2; j < i; j++) {
-            if (i % j == 0) {
-                flag = false;
-                break;
-            }
+      flag = true;
+      for (let j = 2; j < i; j++) {
+        if (i % j == 0) {
+          flag = false;
+          break;
         }
-        if (flag) prime_arr.push(i);
+      }
+      if (flag) prime_arr.push(i);
     }
-
     return prime_arr;
 };
-
-function prime_Factors(num) {
-    let primes_arr = prime_seq(num);
-    let factors = primes_arr.filter(e => {
-        return num % e == 0;
-    });
-
+// func tìm ra các prime phạm vi từ 2 tới num
+  
+const prime_Factors = num => {
+    let prime_arr = prime_seq(num);
+    let factors = prime_arr.filter(e => num % e == 0);
+    // lọc ra các prime mà num có thể chia hết
     return '' + factors;
-}
-
+};
+  
 console.log(prime_Factors(99));
 console.log(prime_Factors(101));
-console.log(prime_Factors(228));
+console.log(prime_Factors(229));
 
 //_____________________________________3_____________________________________________________________
 
@@ -75,22 +72,30 @@ function tree(name) {
 console.log(tree(null));
 //??????????????????????????????????????
 
+
+// const tree = name => {
+//     const results = {};
+//     allMembers
+//       .filter(item => item.name == name)
+//       .forEach(item => results[item.name] = tree(item.name));
+//     return results;
+//   };
+  
+//   console.log(tree(null));
+// ???????????????????
+
 // ______________________________________4______________________________________________________________________
 
 // Write a JavaScript program to find the number of elements which presents in both of the given arrays.
 
-
-function intersectCount(firstArr, secondArr) {
-    let set1 = new Set(firstArr),
-        set2 = new Set(secondArr);
-    console.log(typeof set1);
-
-    return [...set1].filter(e => set2.has(e)).length;
-}
+const intersectCount = (firstArr, secondArr) => {
+    let set2 = new Set(secondArr);
+    return Array.from(new Set([...firstArr])).filter(e => set2.has(e)).length;
+};
   
 console.log(intersectCount([1, 2, 3, 4], [1, 2, 3, 5]));
 console.log(intersectCount([1, 2, 3, 4], [1, 2, 3, 2]));
-
+  
 //______________________________________5____________________________________________________________
 
 // Write a JavaScript program to find all distinct prime factors of a given integer
@@ -225,3 +230,11 @@ Foo.prototype.c = () => 3;
 
 console.log(functions(new Foo()));
 console.log(functions(new Foo(), true));
+
+// _______________________________________11___________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to filter out all values from an array for which the comparator function does not return true.
+
+const differenceWith = (arr, val, comp) => arr.filter(a => val.findIndex(b => comp(a, b)) === -1);
+console.log(differenceWith([1, 1.2, 1.5, 3, 0], [1.9, 3, 0], (a, b) => Math.round(a) === Math.round(b)));

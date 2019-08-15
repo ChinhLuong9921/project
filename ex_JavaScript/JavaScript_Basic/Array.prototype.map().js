@@ -185,3 +185,147 @@ const averageBy = (arr, fn) =>
 console.log(averageBy([{ a: 40 }, { a: 20 }, { a: 80 }, { a: 60 }], o => o.a));
 console.log(averageBy([{ a: 4 }, { a: 2 }, { a: 8 }, { a: 6 }], 'a'));
 
+
+// ___________________________________14___________________________________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// that accepts a converging function and a list of branching functions 
+// and returns a function that applies each branching function to the arguments 
+// and the results of the branching functions are passed as arguments to the converging function.
+
+const converge = (converger, fns) => (...args) => converger(...fns.map(fn => fn.apply(null, args)));
+const average = converge((a, b) => a / b, [
+  arr => arr.reduce((a, v) => a + v, 0),
+  arr => arr.length
+]);
+console.log(average([ 6, 7]));
+console.log(average([1, 2, 3, 4, 5, 6, 7]));
+
+// ________________________________________15_______________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to group the elements of an array based on the given function and returns the count of elements in each group.
+
+const countBy = (arr, fn) =>
+  arr.map(typeof fn === 'function' ? fn : val => val[fn]).reduce((acc, val, i) => {
+    acc[val] = (acc[val] || 0) + 1;
+    return acc;
+  }, {});
+console.log(countBy([6, 10, 100, 10], Math.sqrt));
+console.log(countBy([6.1, 4.2, 6.3], Math.floor));
+console.log(countBy(['one', 'two', 'three'], 'length'));
+
+
+// _____________________________________16____________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to return the difference between two arrays, 
+// after applying the provided function to each array element of both.
+
+const differenceBy = (a, b, fn) => {
+  const s = new Set(b.map(v => fn(v)));
+  return a.filter(x => !s.has(fn(x)));
+};
+
+console.log(differenceBy([2.1, 1.2], [2.3, 3.4], Math.floor));
+console.log(differenceBy([{ x: 2 }, { x: 1 }], [{ x: 1 }], v => v.x));
+
+// _____________________________________17______________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to compute the new ratings between two or more opponents using the Elo rating system. 
+// It takes an array of pre-ratings and returns an array containing post-ratings. 
+// The array should be ordered from best performer to worst performer (winner -> loser).
+
+// Note: Use the exponent ** operator and math operators to compute the expected score (chance of winning). 
+// of each opponent and compute the new rating for each. Loop through the ratings, 
+// using each permutation to compute the post-Elo rating for each player in a pairwise fashion. 
+// Omit the second argument to use the default kFactor of 32.
+
+const elo = ([...ratings], kFactor = 32, selfRating) => {
+  const [a, b] = ratings;
+  const expectedScore = (self, opponent) => 1 / (1 + 10 ** ((opponent - self) / 400));
+  const newRating = (rating, i) =>
+    (selfRating || rating) + kFactor * (i - expectedScore(i ? a : b, i ? b : a));
+  if (ratings.length === 2) {
+    return [newRating(a, 1), newRating(b, 0)];
+  }
+  for (let i = 0, len = ratings.length; i < len; i++) {
+    let j = i;
+    while (j < len - 1) {
+      j++;
+      [ratings[i], ratings[j]] = elo([ratings[i], ratings[j]], kFactor);
+    }
+  }
+  return ratings;
+};
+
+console.log(elo([1200, 1200])); // [1216, 1184]
+console.log(elo([1200, 1200], 64)); // [1232, 1168]
+// 4 player FFA, all same rank
+console.log(elo([1200, 1200, 1200, 1200]).map(Math.round)); // [1246, 1215, 1185, 1154]
+/*
+For teams, each rating can adjusted based on own team's average rating vs.
+average rating of opposing team, with the score being added to their
+own individual rating by supplying it as the third argument.
+*/
+
+// _______________________________________18_______________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to implement the Luhn Algorithm used to validate a variety of identification numbers, 
+// such as credit card numbers, IMEI numbers, National Provider Identifier numbers etc.
+
+const luhnCheck = num => {
+  let arr = (num + '')
+    .split('')
+    .reverse()
+    .map(x => parseInt(x));
+  let lastDigit = arr.splice(0, 1)[0];
+  let sum = arr.reduce((acc, val, i) => (i % 2 !== 0 ? acc + val : acc + ((val * 2) % 9) || 9), 0);
+  sum += lastDigit;
+  return sum % 10 === 0;
+};
+
+console.log(luhnCheck('4485275742308327'));
+console.log(luhnCheck(6011329933655299));
+console.log(luhnCheck(123456789));
+
+// ________________________________________19__________________________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to map the values of an array to an object using a function, 
+// where the key-value pairs consist of the original value as the key and the mapped value.
+
+// Note: Use an anonymous inner function scope to declare an undefined memory space, using closures to store a return value. 
+// Use a new Array to store the array with a map of the function over its data set and a comma operator to return a second step, 
+// without needing to move from one context to another (due to closures and order of operations).
+
+const mapObject = (arr, fn) =>
+  (a => (
+    (a = [arr, arr.map(fn)]), a[0].reduce((acc, val, ind) => ((acc[val] = a[1][ind]), acc), {})
+  ))();
+const squareIt = arr => mapObject(arr, a => a * a);
+console.log(squareIt([1, 2, 3])); 
+
+// ___________________________________________20__________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to create a new string with the results of calling a provided function on every character in the calling string.
+
+const mapString = (str, fn) =>
+  str
+    .split('')
+    .map((c, i) => fn(c, i, str))
+    .join('');
+
+console.log(mapString('Javascript exercises', c => c.toUpperCase()));
+
+// ____________________________________________21_____________________________________________________________________________________
+
+// Write a JavaScript program to get the maximum value of an array, 
+// after mapping each element to a value using the provided function.
+
+const maxBy = (arr, fn) => Math.max(...arr.map(typeof fn === 'function' ? fn : val => val[fn]));
+console.log(maxBy([{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }], o => o.n));
+console.log(maxBy([{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }], 'n'));

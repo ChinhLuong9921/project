@@ -49,3 +49,29 @@ const the_first_one = arr =>
 
 console.log(the_first_one([1, 2, 3, 4, 5, 6]));
 console.log(the_first_one([1]));
+
+// _______________________________________4____________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to execute a provided function once for each array element, 
+// starting from the array's last element.
+
+const forEachRight = (arr, callback) =>
+  arr
+    .slice(0)
+    .reverse()
+    .forEach(callback);
+
+forEachRight([1, 2, 3, 4], val => console.log(val));
+
+// ________________________________________5______________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to replace all but the last number of characters with the specified mask character.
+
+const mask = (cc, num = 4, mask = '*') =>
+  ('' + cc).slice(0, -num).replace(/./g, mask) + ('' + cc).slice(-num);
+
+console.log(mask(1234567890)); 
+console.log(mask(1234567890, 3));
+console.log(mask(1234567890, -4, '$'));

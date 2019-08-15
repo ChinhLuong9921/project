@@ -1,9 +1,8 @@
-// _______________________________________________________________________________________________________________________
+// _________________________________________________________________________________________________________________________________
 
-// Write a JavaScript program to clone a given regular expression.
+// Write a JavaScript program to get the maximum value of an array, 
+// after mapping each element to a value using the provided function.
 
-const cloneRegExp = regExp => new RegExp(regExp.source, regExp.flags);
-const regExp = /lorem ipsum/gi;
-console.log(regExp);
-const regExp2 = cloneRegExp(regExp);
-console.log(regExp2);
+const maxBy = (arr, fn) => Math.max(...arr.map(typeof fn === 'function' ? fn : val => val[fn]));
+console.log(maxBy([{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }], o => o.n));
+console.log(maxBy([{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }], 'n'));

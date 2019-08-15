@@ -201,3 +201,203 @@ const multiplyAll = arr =>
 
 console.log(multiplyAll([[1, 2], [3, 4], [5, 6, 7]]));
 console.log(multiplyAll([[1, 2], [1, 1]]));
+
+// _____________________________________14_______________________________________________________________________________________________________
+
+// Write a JavaScript program to perform right-to-left function composition.
+ 
+const compose = (...fns) => fns.reduce((f, g) => (...args) => f(g(...args)));
+const add5 = x => x + 5;
+const multiply = (x, y) => x * y;
+const multiplyAndAdd5 = compose(
+  add5,
+  multiply
+);
+console.log(multiplyAndAdd5(5, 2)); 
+
+// _____________________________________15__________________________________________________________________________________________________________________
+
+// Write a JavaScript program to perform left-to-right function composition.
+
+const composeRight = (...fns) => fns.reduce((f, g) => (...args) => g(f(...args)));
+const add = (x, y) => x + y;
+const square = x => x * x;
+const addAndSquare = composeRight(add, square);
+
+console.log(addAndSquare(1, 2));
+console.log(addAndSquare(3, 2));
+
+// ___________________________________16___________________________________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// that accepts a converging function and a list of branching functions 
+// and returns a function that applies each branching function to the arguments 
+// and the results of the branching functions are passed as arguments to the converging function.
+
+const converge = (converger, fns) => (...args) => converger(...fns.map(fn => fn.apply(null, args)));
+const average = converge((a, b) => a / b, [
+  arr => arr.reduce((a, v) => a + v, 0),
+  arr => arr.length
+]);
+console.log(average([ 6, 7]));
+console.log(average([1, 2, 3, 4, 5, 6, 7]));
+
+// _____________________________________17__________________________________________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to split values of two given arrays into two groups. 
+// If an element in filter is truthy, 
+// the corresponding element in the collection belongs to the first group; otherwise,
+// it belongs to the second group.
+
+const bifurcate = (arr, filter) => 
+  arr.reduce((acc, val, i) => (acc[filter[i] ? 0 : 1].push(val), acc), [[], []]);
+  // 0, 1 is the array names
+
+console.log(bifurcate([1, 2, 3, 4], [true, true, false, false]));
+console.log(bifurcate([1, 3, 5, 7, 9], [false, true, false, false, false]));
+
+// ___________________________________________18____________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to return the minimum-maximum value of an array, 
+// after applying the provided function to set comparing rule.
+
+const reduce_which = (arr, comparator = (a, b) => a - b) =>
+  arr.reduce((a, b) => (comparator(a, b) >= 0 ? b : a));
+
+console.log(reduce_which([-4, 1, 3, 2, 0, -2, -3])); // (1)
+console.log(reduce_which([10, 30, 20], (a, b) => b - a));
+
+
+// explain
+// a trong phương thức reduce là giá trị tích lũy (accumulator)
+// a or b được trả về sau mỗi lần chạy hàm comparator để gán vào giá trị a ở lần chạy tiếp theo
+// ở (1)
+// đầu tiên -4 sẽ được gán vào a và 1 gán vào b
+// trong phương thức reduce, comparator trả về false và giá trị tích lũy a ở lần tiếp theo được gán với a (là giá trị false)
+// cứ thế giá trị hiện tại (currentValue) b sẽ lấy lần lượt các element trong arr, ele nào bé hơn a tích lũy thì sẽ lấy đó làm a tích lũy mới
+// đó là lí do tại sao solution này trả về minimum or maximum
+
+// _________________________________________________19______________________________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to create a new array out of the two supplied by creating each possible pair from the arrays.
+
+const xProd = (a, b) => a.reduce((acc, x) => acc.concat(b.map(y => [x, y])), []);
+// reduce: giúp tích lũy các mảng mới được tạo ra và trả về 1 mảng lớn
+// concat để ghép mảng mới với mảng lớn
+// map: ghép từng phần tử nhỏ để tạo mảng mới
+
+console.log(xProd([1, 2], [3, 4]));
+console.log(xProd([1, 2, 3, 4], ['a', 'b', 'c', 'd']));
+
+// ____________________________________________20___________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to group the elements of an array based on the given function and returns the count of elements in each group.
+
+const countBy = (arr, fn) =>
+  arr.map(typeof fn === 'function' ? fn : val => val[fn]).reduce((acc, val, i) => {
+    acc[val] = (acc[val] || 0) + 1;
+    return acc;
+  }, {});
+console.log(countBy([6, 10, 100, 10], Math.sqrt));
+console.log(countBy([6.1, 4.2, 6.3], Math.floor));
+console.log(countBy(['one', 'two', 'three'], 'length'));
+
+// ________________________________________21___________________________________________________________________________________________________________
+
+// Write a JavaScript program to count the occurrences of a value in an array.
+
+const countOccurrences = (arr, val) => arr.reduce((a, v) => (v === val ? a + 1 : a), 0);
+console.log(countOccurrences([1, 1, 2, 1, 2, 3], 1));
+console.log(countOccurrences([1, 1, 2, 1, 2, 3], 2));
+console.log(countOccurrences([1, 1, 2, 1, 2, 3], 3));
+
+// ________________________________________22___________________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to invert the key-value pairs of an object, without mutating it. 
+// The corresponding inverted value of each inverted key is an array of keys responsible for generating the inverted value. 
+// If a function is supplied, it is applied to each inverted key.
+
+const invertKeyValues = (obj, fn) =>
+  Object.keys(obj).reduce((acc, key) => {
+    const val = fn ? fn(obj[key]) : obj[key];
+    acc[val] = acc[val] || [];
+    acc[val].push(key);
+    return acc;
+  }, {});
+
+console.log(invertKeyValues({ a: 1, b: 2, c: 1 }));
+console.log(invertKeyValues({ a: 1, b: 2, c: 1 }, value => 'group' + value));
+
+// ________________________________________23______________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to implement the Luhn Algorithm used to validate a variety of identification numbers, 
+// such as credit card numbers, IMEI numbers, National Provider Identifier numbers etc.
+
+const luhnCheck = num => {
+  let arr = (num + '')
+    .split('')
+    .reverse()
+    .map(x => parseInt(x));
+  let lastDigit = arr.splice(0, 1)[0];
+  let sum = arr.reduce((acc, val, i) => (i % 2 !== 0 ? acc + val : acc + ((val * 2) % 9) || 9), 0);
+  sum += lastDigit;
+  return sum % 10 === 0;
+};
+
+console.log(luhnCheck('4485275742308327'));
+console.log(luhnCheck(6011329933655299));
+console.log(luhnCheck(123456789));
+
+// ________________________________________24_________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to create an object with keys generated 
+// by running the provided function for each key and the same values as the provided object.
+
+const mapKeys = (obj, fn) =>
+  Object.keys(obj).reduce((acc, k) => {
+    acc[fn(obj[k], k, obj)] = obj[k];
+    return acc;
+  }, {});
+
+console.log(mapKeys({ a: 1, b: 2 }, (val, key) => key + val));
+
+// _________________________________________25_________________________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to map the values of an array to an object using a function, 
+// where the key-value pairs consist of the original value as the key and the mapped value.
+
+// Note: Use an anonymous inner function scope to declare an undefined memory space, using closures to store a return value. 
+// Use a new Array to store the array with a map of the function over its data set and a comma operator to return a second step, 
+// without needing to move from one context to another (due to closures and order of operations).
+
+const mapObject = (arr, fn) =>
+  (a => (
+    (a = [arr, arr.map(fn)]), a[0].reduce((acc, val, ind) => ((acc[val] = a[1][ind]), acc), {})
+  ))();
+const squareIt = arr => mapObject(arr, a => a * a);
+console.log(squareIt([1, 2, 3])); 
+
+// _____________________________________________26_________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to create an object with the same keys as the provided object and values generated 
+// by running the provided function for each value.
+
+const mapValues = (obj, fn) =>
+  Object.keys(obj).reduce((acc, k) => {
+    acc[k] = fn(obj[k], k, obj);
+    return acc;
+  }, {});
+const users = {
+  fred: { user: 'fred', age: 40 },
+  pebbles: { user: 'pebbles', age: 1 }
+};
+console.log(mapValues(users, u => u.age));

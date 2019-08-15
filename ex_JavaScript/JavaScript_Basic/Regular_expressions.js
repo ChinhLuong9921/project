@@ -354,3 +354,26 @@ const regExp = /lorem ipsum/gi;
 console.log(regExp);
 const regExp2 = cloneRegExp(regExp);
 console.log(regExp2);
+
+// ________________________________________15_______________________________________________________________________________________
+
+// Write a JavaScript program 
+// to  detect if the website is being opened in a mobile device or a desktop/laptop.
+
+const detectDeviceType = () =>
+  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    ? 'Mobile'
+    : 'Desktop';
+console.log(detectDeviceType()); // "Mobile" or "Desktop"
+
+// __________________________________________16____________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to replace all but the last number of characters with the specified mask character.
+
+const mask = (cc, num = 4, mask = '*') =>
+  ('' + cc).slice(0, -num).replace(/./g, mask) + ('' + cc).slice(-num);
+
+console.log(mask(1234567890)); 
+console.log(mask(1234567890, 3));
+console.log(mask(1234567890, -4, '$'));

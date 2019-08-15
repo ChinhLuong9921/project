@@ -86,3 +86,75 @@ Foo.prototype.c = () => 3;
 
 console.log(functions(new Foo()));
 console.log(functions(new Foo(), true));
+
+// ____________________________________6__________________________________________________________________________________________
+
+// Write a JavaScript program to create a deep clone of an object.
+
+const deepClone = obj => {
+  let clone = Object.assign({}, obj);
+  Object.keys(clone).forEach(
+    key => (clone[key] = typeof obj[key] === 'object' ? deepClone(obj[key]) : obj[key])
+  );
+  return Array.isArray(obj) ? (clone.length = obj.length) && Array.from(clone) : clone;
+};
+const a = { foo: 'bar', obj: { a: 1, b: 2 } };
+const b = deepClone(a); // a !== b, a.obj !== b.obj
+console.log(b)
+
+// _____________________________________7_________________________________________________________________________________________________
+
+// Write a JavaScript program to iterate over all own properties of an object, 
+// running a callback for each one.
+
+const forOwn = (obj, fn) => Object.keys(obj).forEach(key => fn(obj[key], key, obj));
+forOwn({ foo: 'bar', a: 1 }, v => console.log(v)); // 'bar', 1
+
+// ________________________________________8___________________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to invert the key-value pairs of an object, without mutating it. 
+// The corresponding inverted value of each inverted key is an array of keys responsible for generating the inverted value. 
+// If a function is supplied, it is applied to each inverted key.
+
+const invertKeyValues = (obj, fn) =>
+  Object.keys(obj).reduce((acc, key) => {
+    const val = fn ? fn(obj[key]) : obj[key];
+    acc[val] = acc[val] || [];
+    acc[val].push(key);
+    return acc;
+  }, {});
+
+console.log(invertKeyValues({ a: 1, b: 2, c: 1 }));
+console.log(invertKeyValues({ a: 1, b: 2, c: 1 }, value => 'group' + value));
+
+// _______________________________________9__________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to create an object with keys generated 
+// by running the provided function for each key and the same values as the provided object.
+
+const mapKeys = (obj, fn) =>
+  Object.keys(obj).reduce((acc, k) => {
+    acc[fn(obj[k], k, obj)] = obj[k];
+    return acc;
+  }, {});
+
+console.log(mapKeys({ a: 1, b: 2 }, (val, key) => key + val));
+
+// ________________________________________10______________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to create an object with the same keys as the provided object and values generated 
+// by running the provided function for each value.
+
+const mapValues = (obj, fn) =>
+  Object.keys(obj).reduce((acc, k) => {
+    acc[k] = fn(obj[k], k, obj);
+    return acc;
+  }, {});
+const users = {
+  fred: { user: 'fred', age: 40 },
+  pebbles: { user: 'pebbles', age: 1 }
+};
+console.log(mapValues(users, u => u.age));

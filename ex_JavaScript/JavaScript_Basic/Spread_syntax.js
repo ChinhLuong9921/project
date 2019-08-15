@@ -166,3 +166,26 @@ Foo.prototype.c = () => 3;
 
 console.log(functions(new Foo()));
 console.log(functions(new Foo(), true));
+
+// _____________________________________12__________________________________________________________________________________-
+
+// Write a JavaScript program 
+// to take any number of iterable objects or objects 
+// with a length property and returns the longest one.
+ 
+const longestItem = (...vals) => [...vals].sort((a, b) => b.length - a.length)[0];
+
+console.log(longestItem('this', 'is', 'a', 'testcase'));
+console.log(longestItem(...['a', 'ab', 'abc']));
+console.log(longestItem(...['a', 'ab', 'abc'], 'abcd'));
+console.log(longestItem([1, 2, 3], [1, 2], [1, 2, 3, 4, 5]));
+console.log(longestItem([1, 2, 3], 'foobar'));
+
+// ______________________________________13___________________________________________________________________________________________
+
+// Write a JavaScript program to get the maximum value of an array, 
+// after mapping each element to a value using the provided function.
+
+const maxBy = (arr, fn) => Math.max(...arr.map(typeof fn === 'function' ? fn : val => val[fn]));
+console.log(maxBy([{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }], o => o.n));
+console.log(maxBy([{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }], 'n'));

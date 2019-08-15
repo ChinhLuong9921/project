@@ -1,14 +1,20 @@
+// ______________________________________________________________________________________________________________________________________________
 
-// Write a JavaScript program to compute the average of an array, 
-// after mapping each element to a value using the provided function.
+// Write a JavaScript program 
+// to implement the Luhn Algorithm used to validate a variety of identification numbers, 
+// such as credit card numbers, IMEI numbers, National Provider Identifier numbers etc.
 
-const averageBy = (arr, fn) =>
-  arr
-    .map(typeof fn === 'function' ? fn : val => val[fn])
-    .reduce((acc, val) => acc + val, 0) 
-    / arr.length;
+const luhnCheck = num => {
+  let arr = (num + '')
+    .split('')
+    .reverse()
+    .map(x => parseInt(x));
+  let lastDigit = arr.splice(0, 1)[0];
+  let sum = arr.reduce((acc, val, i) => (i % 2 !== 0 ? acc + val : acc + ((val * 2) % 9) || 9), 0);
+  sum += lastDigit;
+  return sum % 10 === 0;
+};
 
-console.log(averageBy([{ a: 40 }, { a: 20 }, { a: 80 }, { a: 60 }], o => o.a));
-console.log(averageBy([{ a: 4 }, { a: 2 }, { a: 8 }, { a: 6 }], 'a'));
-
-
+console.log(luhnCheck('4485275742308327'));
+console.log(luhnCheck(6011329933655299));
+console.log(luhnCheck(123456789));

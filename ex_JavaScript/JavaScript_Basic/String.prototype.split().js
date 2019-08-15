@@ -178,3 +178,37 @@ function swap_two_halves(arr) {
 
 console.log(swap_two_halves([1, 2, 3, 4, 5, 6]));
 console.log(swap_two_halves([1, 2, 3, 4, 5]));
+
+// ______________________________________9________________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to implement the Luhn Algorithm used to validate a variety of identification numbers, 
+// such as credit card numbers, IMEI numbers, National Provider Identifier numbers etc.
+
+const luhnCheck = num => {
+    let arr = (num + '')
+      .split('')
+      .reverse()
+      .map(x => parseInt(x));
+    let lastDigit = arr.splice(0, 1)[0];
+    let sum = arr.reduce((acc, val, i) => (i % 2 !== 0 ? acc + val : acc + ((val * 2) % 9) || 9), 0);
+    sum += lastDigit;
+    return sum % 10 === 0;
+};
+  
+console.log(luhnCheck('4485275742308327'));
+console.log(luhnCheck(6011329933655299));
+console.log(luhnCheck(123456789));
+
+// ______________________________________10_______________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to create a new string with the results of calling a provided function on every character in the calling string.
+
+const mapString = (str, fn) =>
+  str
+    .split('')
+    .map((c, i) => fn(c, i, str))
+    .join('');
+
+console.log(mapString('Javascript exercises', c => c.toUpperCase()));
