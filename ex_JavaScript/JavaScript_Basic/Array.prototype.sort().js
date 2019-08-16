@@ -65,3 +65,31 @@ console.log(longestItem(...['a', 'ab', 'abc']));
 console.log(longestItem(...['a', 'ab', 'abc'], 'abcd'));
 console.log(longestItem([1, 2, 3], [1, 2], [1, 2, 3, 4, 5]));
 console.log(longestItem([1, 2, 3], 'foobar'));
+
+// ______________________________________5_______________________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to get the n maximum elements from the provided array. 
+// If n is greater than or equal to the provided array's length, 
+// then return the original array(sorted in descending order).
+
+const maxN = (arr, n = 1) => [...arr].sort((a, b) => b - a).slice(0, n);
+
+console.log(maxN([1, 2, 3]));
+console.log(maxN([1, 2, 3], 2));
+
+// ________________________________________6______________________________________________________________________________________--
+
+// Write a JavaScript program to get the median of an array of numbers.
+
+// Note: Find the middle of the array, use Array.sort() to sort the values. 
+// Return the number at the midpoint if length is odd, 
+// otherwise the average of the two middle numbers.
+
+const median = arr => {
+  const mid = Math.floor(arr.length / 2),
+    nums = [...arr].sort((a, b) => a - b);
+  return arr.length % 2 !== 0 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
+};
+console.log(median([5, 6, 50, 1, -5]));
+console.log(median([1, 2, 3, 4, 5]));

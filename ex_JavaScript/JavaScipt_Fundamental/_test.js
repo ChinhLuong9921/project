@@ -1,8 +1,14 @@
-// _________________________________________________________________________________________________________________________________
 
-// Write a JavaScript program to get the maximum value of an array, 
-// after mapping each element to a value using the provided function.
+// // Write a JavaScript program 
+// // to replace all but the last number of characters with the specified mask character.
 
-const maxBy = (arr, fn) => Math.max(...arr.map(typeof fn === 'function' ? fn : val => val[fn]));
-console.log(maxBy([{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }], o => o.n));
-console.log(maxBy([{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }], 'n'));
+// const mask = (cc, num = 4, mask = '*') =>
+//   ('' + cc).slice(0, -num).replace(/./g, mask) + ('' + cc).slice(-num);
+
+// console.log(mask(1234567890)); 
+// console.log(mask(1234567890, 3));
+// console.log(mask(1234567890, -4, '$'));
+
+
+const mask = (cc, num = 4, mask = '*') => 
+  ('' + cc).slice(0, -num).replace(/./g, mask) + ('' + cc).slice(-num);

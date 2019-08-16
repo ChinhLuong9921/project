@@ -75,3 +75,36 @@ const mask = (cc, num = 4, mask = '*') =>
 console.log(mask(1234567890)); 
 console.log(mask(1234567890, 3));
 console.log(mask(1234567890, -4, '$'));
+
+// __________________________________________6___________________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to get the n maximum elements from the provided array. 
+// If n is greater than or equal to the provided array's length, 
+// then return the original array(sorted in descending order).
+
+const maxN = (arr, n = 1) => [...arr].sort((a, b) => b - a).slice(0, n);
+
+console.log(maxN([1, 2, 3]));
+console.log(maxN([1, 2, 3], 2));
+
+// _____________________________________________7_______________________________________________________________-
+
+// Write a JavaScript program 
+// to create a function that gets the argument at index n. 
+// If n is negative, the nth argument from the end is returned.
+
+const nthArg = n => (...args) => args.slice(n)[0];
+const third = nthArg(2);
+third(1, 2, 3); // 3
+third(1, 2); // undefined
+const last = nthArg(-1);
+console.log(last(1, 2, 3, 4, 5));
+
+// _____________________________________________8__________________________________________________________________________
+
+// Write a JavaScript program to move the specified amount of elements to the end of the array.
+
+const offset = (arr, offset) => [...arr.slice(offset), ...arr.slice(0, offset)];
+console.log(offset([1, 2, 3, 4, 5], 2));
+console.log(offset([1, 2, 3, 4, 5], -2));

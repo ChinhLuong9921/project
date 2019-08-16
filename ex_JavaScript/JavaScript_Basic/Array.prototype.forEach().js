@@ -47,3 +47,29 @@ forEachRight([1, 2, 3, 4], val => console.log(val));
 
 const forOwn = (obj, fn) => Object.keys(obj).forEach(key => fn(obj[key], key, obj));
 forOwn({ foo: 'bar', a: 1 }, v => console.log(v)); // 'bar', 1
+
+
+//____________________________________5___________________________________________________________
+// Write a JavaScript program to simplify a given absolute path for a file in Unix-style.
+
+const simplifiedPath = path => {
+  if (path === '') return '/';
+  let simplifiedPath = [];
+  let dirs = path.match(/(\w+|\.\.|\.)+/g);
+  if (dirs) {
+    dirs.forEach(d => {
+      if (/\.\./.test(d)) {
+        if (simplifiedPath.length) simplifiedPath.pop();
+        // sau khi simplifiedPath có chiều dài 
+        // ngay sau khi gặp 'www' có thể d sẽ chạy tới '..'
+        // vì thể ta xóa kí tự 'www' khi ngay đằng sau nó là '..'
+      } else if (/[^\.]/.test(d)) simplifiedPath.push(d);
+    });
+    if (simplifiedPath.length === 0) return '/';
+  }
+  return ['/', simplifiedPath.join('/')].join('');
+};
+ 
+console.log(simplifiedPath('home/var/./www/../html/sql'));
+// '.': biểu thị thư mục hiện thời
+// '..': biểu thị thư mục mẹ của thư mục hiện thời

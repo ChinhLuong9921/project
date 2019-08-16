@@ -137,12 +137,25 @@ console.log(group_By(['one', 'two', 'three'], 'length'));
 // Write a JavaScript to find
 // the longest string from an given array of strings.
 
-const longest_in_arr_ = arr => 
-arr.reduce((acc, val, idx) => acc = Math.max(acc, arr[idx].length), 0);
+const longest_in_arr = arr => {
+  let longest = '';
+  arr.map(ele => {
+      longest.length < ele;
+      return longest = ele;
+  });
+  return longest;
+};
 
-console.log(longest_in_arr_(['aa', 'aaa', 'aaaaa']));
-console.log(longest_in_arr_(['cccc', '', 'cc', 'ccccccccccccc']));
-console.log(longest_in_arr_(['aa', 'aaa', 'aaaaa', 'adskfjkfja']));
+console.log(longest_in_arr(['aa', 'aaa', 'aaaaa']));
+console.log(longest_in_arr(['cccc', '', 'cc', 'ccccccccccccc']));
+// ______________________________________________________________________________
+
+const longest_in_arr_length = arr => 
+arr.reduce((acc, val) => acc = Math.max(acc, val.length), 0);
+
+console.log(longest_in_arr_length(['aa', 'aaa', 'aaaaa']));
+console.log(longest_in_arr_length(['cccc', '', 'cc', 'ccccccccccccc']));
+console.log(longest_in_arr_length(['aa', 'aaa', 'aaaaa', 'adskfjkfja']));
 
 // _________________________________________10____________________________________________________________________________________________--
 
@@ -401,3 +414,23 @@ const users = {
   pebbles: { user: 'pebbles', age: 1 }
 };
 console.log(mapValues(users, u => u.age));
+
+// ______________________________________________27__________________________________________________________________________________-
+
+// Write a JavaScript program to pick  the key-value pairs corresponding to the given keys from an object.
+
+const pick = (obj, arr) =>
+  arr.reduce((acc, curr) => (curr in obj && (acc[curr] = obj[curr]), acc), {});
+console.log(pick({ a: 1, b: '2', c: 3 }, ['a', 'c']));
+
+// ______________________________________________28_________________________________________________________________________
+
+// Write a JavaScript program 
+// to create an object composed of the properties the given function returns truthy for. 
+// The function is invoked with two arguments: (value, key).
+
+const pickBy = (obj, fn) =>
+  Object.keys(obj)
+    .filter(k => fn(obj[k], k))
+    .reduce((acc, key) => ((acc[key] = obj[key]), acc), {});
+console.log(pickBy({ a: 1, b: '2', c: 3 }, x => typeof x === 'number'));

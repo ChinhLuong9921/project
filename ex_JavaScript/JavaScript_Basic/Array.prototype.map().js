@@ -25,26 +25,25 @@ console.log(larger_in_arr([2, 3, 5]));
 // Write a JavaScript to find
 // the longest string from an given array of strings.
 
-function longest_in_arr(arr) {
+const longest_in_arr = arr => {
     let longest = '';
-    arr.map((ele, idx, arr) => {
-        longest.length < arr[idx];
-        longest = arr[idx];
-    })
+    arr.map(ele => {
+        longest.length < ele;
+        return longest = ele;
+    });
     return longest;
-}
+};
 
 console.log(longest_in_arr(['aa', 'aaa', 'aaaaa']));
 console.log(longest_in_arr(['cccc', '', 'cc', 'ccccccccccccc']));
+// ______________________________________________________________________________
 
-//___________________________________________________________________________________________
+const longest_in_arr_length = arr => 
+  arr.reduce((acc, val) => acc = Math.max(acc, val.length), 0);
 
-const longest_in_arr_ = arr => 
-  arr.reduce((acc, val, idx) => acc = Math.max(acc, arr[idx].length), 0);
-
-console.log(longest_in_arr_(['aa', 'aaa', 'aaaaa']));
-console.log(longest_in_arr_(['cccc', '', 'cc', 'ccccccccccccc']));
-console.log(longest_in_arr_(['aa', 'aaa', 'aaaaa', 'adskfjkfja']));
+console.log(longest_in_arr_length(['aa', 'aaa', 'aaaaa']));
+console.log(longest_in_arr_length(['cccc', '', 'cc', 'ccccccccccccc']));
+console.log(longest_in_arr_length(['aa', 'aaa', 'aaaaa', 'adskfjkfja']));
 
 //_____________________________________4___________________________________________________________
 
@@ -329,3 +328,25 @@ console.log(mapString('Javascript exercises', c => c.toUpperCase()));
 const maxBy = (arr, fn) => Math.max(...arr.map(typeof fn === 'function' ? fn : val => val[fn]));
 console.log(maxBy([{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }], o => o.n));
 console.log(maxBy([{ n: 4 }, { n: 2 }, { n: 8 }, { n: 6 }], 'n'));
+
+// ______________________________________________22_________________________________________________________________
+
+// Write a JavaScript program 
+// to nest a given flat array of objects linked to one another recursively.
+
+// Note: Useful for nesting comments, such as the ones on reddit.com.
+
+const nest = (items, id = null, link = 'parent_id') =>
+  items
+    .filter(item => item[link] === id)
+    .map(item => ({ ...item, children: nest(items, item.id) }));
+// One top level comment
+const comments = [
+  { id: 1, parent_id: null },
+  { id: 2, parent_id: 1 },
+  { id: 3, parent_id: 1 },
+  { id: 4, parent_id: 2 },
+  { id: 5, parent_id: 4 }
+];
+const nestedComments = nest(comments); 
+console.log(nestedComments);
