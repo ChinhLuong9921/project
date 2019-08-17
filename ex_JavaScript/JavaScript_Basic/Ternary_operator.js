@@ -70,3 +70,16 @@ console.log(get_Meridiem_Suffix_Of_Integer(0));
 console.log(get_Meridiem_Suffix_Of_Integer(11));
 console.log(get_Meridiem_Suffix_Of_Integer(13));
 console.log(get_Meridiem_Suffix_Of_Integer(25));
+
+// ______________________________________________5_____________________________________________________________________
+
+// Write a JavaScript program to test a value, x, against a predicate function. 
+// If true, return fn(x). Else, return x.
+
+// Return a function expecting a single value, x, 
+// that returns the appropriate value based on pred.
+ 
+const when = (pred, whenTrue) => x => (pred(x) ? whenTrue(x) : x);
+const doubleEvenNumbers = when(x => x % 2 === 0, x => x * 2);
+console.log(doubleEvenNumbers(2));
+console.log(doubleEvenNumbers(1));

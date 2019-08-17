@@ -1,14 +1,34 @@
 
 // // Write a JavaScript program 
-// // to replace all but the last number of characters with the specified mask character.
+// // to find the number of even values in sequence before the first occurrence of a given number.
 
-// const mask = (cc, num = 4, mask = '*') =>
-//   ('' + cc).slice(0, -num).replace(/./g, mask) + ('' + cc).slice(-num);
+// // Sample sequence = [1,2,3,4,5,6,7,8]
+// // Given number: 5
+// // Output: 2
 
-// console.log(mask(1234567890)); 
-// console.log(mask(1234567890, 3));
-// console.log(mask(1234567890, -4, '$'));
+// function count_even_value(arr, num) {
+//   let count = 0;
+//   if (arr.includes(num)) {
+//     for (let i = 0; i < arr.indexOf(num); i++) {
+//       if (arr[i] % 2 === 0) count++;
+//     } 
+//   } else return undefined;
+//   return count;
+// }
 
+// console.log(count_even_value([1, 2, 3, 4, 5, 6], 5));
+// console.log(count_even_value([2, 3, 5, 7, 8], 8));
 
-const mask = (cc, num = 4, mask = '*') => 
-  ('' + cc).slice(0, -num).replace(/./g, mask) + ('' + cc).slice(-num);
+const count_even_value = (arr, num) => {
+  let count = 0; 
+  if (arr.includes(num)) {
+    for (let i = 0; i < arr.indexOf(num); i++) {
+      if (arr[i] % 2 === 0) count++;
+    }
+  } else return undefined;
+  return count;
+};
+
+console.log(count_even_value([1, 2, 3, 4, 5, 6], 5));
+console.log(count_even_value([2, 3, 5, 7, 8], 8));
+

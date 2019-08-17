@@ -105,3 +105,41 @@ function prime_Factors(num) {
 console.log(prime_Factors(99));
 console.log(prime_Factors(101));
 console.log(prime_Factors(228));
+
+// _____________________________________________4______________________________________________________________________________________
+
+// Write a JavaScript program to create an array of elements, 
+// ungrouping the elements in an array produced by zip and applying the provided function.
+
+const unzipWith = (arr, fn) =>
+  arr
+    .reduce(
+      (acc, val) => (val.forEach((v, i) => acc[i].push(v)), acc),
+      Array.from({
+        length: Math.max(...arr.map(x => x.length))
+      }).map(x => [])
+    )
+    .map(val => fn(...val));
+
+console.log(unzipWith([[1, 10, 100], [2, 20, 200]], (...args) => args.reduce((acc, v) => acc + v, 0)));
+
+// _______________________________________________5___________________________________________________________________________________
+
+// Write a JavaScript program to get all unique values of an array, based on a provided comparator function.
+
+const uniqueElementsBy = (arr, fn) =>
+  arr.reduce((acc, v) => {
+    if (!acc.some(x => fn(v, x))) acc.push(v);
+    return acc;
+  }, []);
+
+console.log(uniqueElementsBy(
+  [
+    { id: 0, value: 'a' },
+    { id: 1, value: 'b' },
+    { id: 2, value: 'c' },
+    { id: 1, value: 'd' },
+    { id: 0, value: 'e' }
+  ],
+  (a, b) => a.id == b.id
+));

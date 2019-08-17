@@ -255,3 +255,11 @@ const mask = (cc, num = 4, mask = '*') =>
 console.log(mask(1234567890)); 
 console.log(mask(1234567890, 3));
 console.log(mask(1234567890, -4, '$'));
+
+// ____________________________________________16_____________________________________________________________________________
+
+// Write a JavaScript program to convert a given string into an array of words.
+
+const words = (str, pattern = /[^a-zA-Z-]+/) => str.split(pattern).filter(Boolean);
+console.log(words('I love javaScript!!')); 
+console.log(words('python, java, php'));

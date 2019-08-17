@@ -434,3 +434,117 @@ const pickBy = (obj, fn) =>
     .filter(k => fn(obj[k], k))
     .reduce((acc, key) => ((acc[key] = obj[key]), acc), {});
 console.log(pickBy({ a: 1, b: '2', c: 3 }, x => typeof x === 'number'));
+
+// _____________________________________________29________________________________________________________________________
+
+// Write a JavaScript program 
+// to filter an array of objects based on a condition while also filtering out unspecified keys.
+
+const reducedFilter = (data, keys, fn) =>
+  data.filter(fn).map(el =>
+    keys.reduce((acc, key) => {
+      acc[key] = el[key];
+      return acc;
+    }, {})
+  );
+const data = [
+  {
+    id: 1,
+    name: 'john',
+    age: 24
+  },
+  {
+    id: 2,
+    name: 'mike',
+    age: 50
+  }
+];
+
+console.log(reducedFilter(data, ['id', 'name'], item => item.age > 24));
+
+// ______________________________________________30___________________________________________________________________________________
+
+// Write a JavaScript program to hash an given  input string into a whole number.
+
+const sdbm = str => {
+  let arr = str.split('');
+  return arr.reduce(
+    (hashCode, currentVal) =>
+      (hashCode = currentVal.charCodeAt(0) + (hashCode << 6) + (hashCode << 16) - hashCode),
+    0
+  );
+};
+console.log(sdbm('w3r'));
+console.log(sdbm('name'));
+
+// ________________________________________________31__________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to return the object associating the properties 
+// to the values of an given array of valid property identifiers and an array of values.
+
+// Note: Since an object can have undefined values but not undefined property pointers, 
+// the array of properties is used to decide the structure of the resulting object using Array.reduce().
+
+const zipObject = (props, values) =>
+  props.reduce((obj, prop, index) => ((obj[prop] = values[index]), obj), {});
+console.log(zipObject(['a', 'b', 'c'], [1, 2])); 
+console.log(zipObject(['a', 'b'], [1, 2, 3]));
+
+// ___________________________________________________32________________________________________________________________________________
+
+// Write a JavaScript program to create an array of elements, 
+// ungrouping the elements in an array produced by zip and applying the provided function.
+
+const unzipWith = (arr, fn) =>
+  arr
+    .reduce(
+      (acc, val) => (val.forEach((v, i) => acc[i].push(v)), acc),
+      Array.from({
+        length: Math.max(...arr.map(x => x.length))
+      }).map(x => [])
+    )
+    .map(val => fn(...val));
+
+console.log(unzipWith([[1, 10, 100], [2, 20, 200]], (...args) => args.reduce((acc, v) => acc + v, 0)));
+
+// ___________________________________________________33_______________________________________________________________________________
+
+// Write a JavaScript program to get all unique values of an array, based on a provided comparator function.
+
+const uniqueElementsBy = (arr, fn) =>
+  arr.reduce((acc, v) => {
+    if (!acc.some(x => fn(v, x))) acc.push(v);
+    return acc;
+  }, []);
+
+console.log(uniqueElementsBy(
+  [
+    { id: 0, value: 'a' },
+    { id: 1, value: 'b' },
+    { id: 2, value: 'c' },
+    { id: 1, value: 'd' },
+    { id: 0, value: 'e' }
+  ],
+  (a, b) => a.id == b.id
+));
+
+// ___________________________________34____________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to find the number which appears most in a given array of integers.
+
+const find_num_appears = arr => {
+  let counter = {};
+  arr.forEach(val => counter[val] = (counter[val] || 0) + 1);
+  return counter;
+};
+
+console.log(find_num_appears([1, 2, 3, 5, 67, 7, 8, 99, 1, 2, 3, 55, 67]));
+
+// _________________________________________________________________________________________________________________________________________
+
+const find_num_appears_ = arr => 
+  arr.reduce((acc, val) => (acc[val] = (acc[val] || 0) + 1, acc), {});
+
+console.log(find_num_appears_([1, 2, 3, 5, 67, 7, 8, 99, 1, 2, 3, 55, 67]));

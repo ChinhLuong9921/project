@@ -212,3 +212,26 @@ const mapString = (str, fn) =>
     .join('');
 
 console.log(mapString('Javascript exercises', c => c.toUpperCase()));
+
+// ________________________________________11_________________________________________________________________________________________
+
+// Write a JavaScript program to hash an given  input string into a whole number.
+
+const sdbm = str => {
+    let arr = str.split('');
+    return arr.reduce(
+      (hashCode, currentVal) =>
+        (hashCode = currentVal.charCodeAt(0) + (hashCode << 6) + (hashCode << 16) - hashCode),
+      0
+    );
+};
+console.log(sdbm('w3r'));
+console.log(sdbm('name'));
+  
+// ___________________________________________12______________________________________________________________________________
+
+// Write a JavaScript program to convert a given string into an array of words.
+
+const words = (str, pattern = /[^a-zA-Z-]+/) => str.split(pattern).filter(Boolean);
+console.log(words('I love javaScript!!')); 
+console.log(words('python, java, php'));

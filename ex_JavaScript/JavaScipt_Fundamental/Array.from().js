@@ -62,7 +62,7 @@ console.log(initialize_Array_With_Range(5));
 console.log(initialize_Array_With_Range(8, 3));  
 console.log(initialize_Array_With_Range(6, 0, 2));  
 
-// ______________________________________________________________________________________________________________________________
+// _______________________________________5_______________________________________________________________________________________
 
 // Write a JavaScript program to create a deep clone of an object.
 
@@ -76,3 +76,61 @@ const deepClone = obj => {
 const a = { foo: 'bar', obj: { a: 1, b: 2 } };
 const b = deepClone(a); // a !== b, a.obj !== b.obj
 console.log(b)
+
+// __________________________________________6_________________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to create an array of elements, grouped based on the position 
+// in the original arrays and using function as the last value to specify how grouped values should be combined.
+
+// Note: Check if the last argument provided is a function.
+
+const zipWith = (...array) => {
+  const fn = typeof array[array.length - 1] === 'function' ? array.pop() : undefined;
+  return Array.from(
+    { length: Math.max(...array.map(a => a.length)) },
+    (_, i) => (fn ? fn(...array.map(a => a[i])) : array.map(a => a[i]))
+  );
+};
+
+zipWith([1, 2], [10, 20], [100, 200], (a, b, c) => a + b + c); // [111,222]
+
+console.log(zipWith(
+  [1, 2, 3],
+  [10, 20],
+  [100, 200],
+  (a, b, c) => (a != null ? a : 'a') + (b != null ? b : 'b') + (c != null ? c : 'c')
+)); 
+
+// ______________________________________________7_____________________________________________________________________
+
+// Write a JavaScript program to create an array of elements, 
+// grouped based on the position in the original arrays.
+
+const zip = (...arrays) => {
+  const maxLength = Math.max(...arrays.map(x => x.length));
+  return Array.from({ length: maxLength }).map((_, i) => {
+    return Array.from({ length: arrays.length }, (_, k) => arrays[k][i]);
+  });
+};
+
+console.log(zip(['a', 'b'], [1, 2], [true, false]));
+console.log(zip(['a'], [1, 2], [true, false]));
+
+// _______________________________________________8____________________________________________________________________________________
+
+// Write a JavaScript program to create an array of elements, 
+// ungrouping the elements in an array produced by zip and applying the provided function.
+
+const unzipWith = (arr, fn) =>
+  arr
+    .reduce(
+      (acc, val) => (val.forEach((v, i) => acc[i].push(v)), acc),
+      Array.from({
+        length: Math.max(...arr.map(x => x.length))
+      }).map(x => [])
+    )
+    .map(val => fn(...val));
+
+console.log(unzipWith([[1, 10, 100], [2, 20, 200]], (...args) => args.reduce((acc, v) => acc + v, 0)));
+

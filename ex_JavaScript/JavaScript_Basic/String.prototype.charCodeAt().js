@@ -104,3 +104,19 @@ function is_divisible_by3(mask_str) {
   
 console.log(is_divisible_by3("2#0"));
 console.log(is_divisible_by3("4#2"));
+
+// ___________________________________________4______________________________________________________________________________________
+
+// Write a JavaScript program to hash an given  input string into a whole number.
+
+const sdbm = str => {
+    let arr = str.split('');
+    return arr.reduce(
+      (hashCode, currentVal) =>
+        (hashCode = currentVal.charCodeAt(0) + (hashCode << 6) + (hashCode << 16) - hashCode),
+      0
+    );
+  };
+  console.log(sdbm('w3r'));
+  console.log(sdbm('name'));
+  

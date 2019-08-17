@@ -196,3 +196,38 @@ const pickBy = (obj, fn) =>
     .filter(k => fn(obj[k], k))
     .reduce((acc, key) => ((acc[key] = obj[key]), acc), {});
 console.log(pickBy({ a: 1, b: '2', c: 3 }, x => typeof x === 'number'));
+
+// _________________________________________________13____________________________________________________________________
+
+// Write a JavaScript program 
+// to filter an array of objects based on a condition while also filtering out unspecified keys.
+
+const reducedFilter = (data, keys, fn) =>
+  data.filter(fn).map(el =>
+    keys.reduce((acc, key) => {
+      acc[key] = el[key];
+      return acc;
+    }, {})
+  );
+const data = [
+  {
+    id: 1,
+    name: 'john',
+    age: 24
+  },
+  {
+    id: 2,
+    name: 'mike',
+    age: 50
+  }
+];
+
+console.log(reducedFilter(data, ['id', 'name'], item => item.age > 24));
+
+// _____________________________________________14____________________________________________________________________________
+
+// Write a JavaScript program to convert a given string into an array of words.
+
+const words = (str, pattern = /[^a-zA-Z-]+/) => str.split(pattern).filter(Boolean);
+console.log(words('I love javaScript!!')); 
+console.log(words('python, java, php'));

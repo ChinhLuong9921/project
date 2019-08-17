@@ -108,3 +108,11 @@ console.log(last(1, 2, 3, 4, 5));
 const offset = (arr, offset) => [...arr.slice(offset), ...arr.slice(0, offset)];
 console.log(offset([1, 2, 3, 4, 5], 2));
 console.log(offset([1, 2, 3, 4, 5], -2));
+
+// _______________________________________________9_________________________________________________________________
+
+// Write a JavaScript program to get the nth element of an given array.
+
+const nthElement = (arr, n = 0) => (n > 0 ? arr.slice(n, n + 1) : arr.slice(n))[0];
+console.log(nthElement(['a', 'b', 'c'], 1));
+console.log(nthElement(['a', 'b', 'b'], -3));
