@@ -6,4 +6,6 @@
 * 17/8/2019: analyze Regular_expressions.js___ 15/15
 * 18/8/2019: analyze Array.prptotype.forEach().js___ 6/6
   * Array.prototype.includes().js___ 3/6
+* 21/8/2019: analyze Array.prototype.includes().js___6/6
+  * analyze Array.prototype.reverse().js___2/3
 * **vendor**

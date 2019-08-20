@@ -81,3 +81,10 @@ const allEqual = arr => arr.every(val => val === arr[0]);
 console.log(allEqual([1, 2, 3, 4, 5, 6]));
 console.log(allEqual([12, 12, 12, 12]));
 
+// ____________________________________________6_________________________________________________________________________
+
+// Write a JavaScript program 
+// to check if the predicate (second argument) is truthy on all elements of a collection (first argument).
+
+const truthCheckCollection = (collection, pre) => collection.every(obj => obj[pre]);
+console.log(truthCheckCollection([{ user: 'Tinky-Winky', sex: 'male' }, { user: 'Dipsy', sex: 'male' }], 'sex'));

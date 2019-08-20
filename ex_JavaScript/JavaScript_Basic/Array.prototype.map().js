@@ -434,3 +434,54 @@ const unzipWith = (arr, fn) =>
     .map(val => fn(...val));
 
 console.log(unzipWith([[1, 10, 100], [2, 20, 200]], (...args) => args.reduce((acc, v) => acc + v, 0)));
+
+// __________________________________________________27______________________________________________________________________________
+
+// Write a JavaScript program to unflatten an object with the paths for keys.
+
+const unflattenObject = obj =>
+  Object.keys(obj).reduce((acc, k) => {
+    if (k.indexOf('.') !== -1) {
+      const keys = k.split('.');
+      Object.assign(
+        acc,
+        JSON.parse(
+          '{' +
+            keys.map((v, i) => (i !== keys.length - 1 ? `"${v}":{` : `"${v}":`)).join('') +
+            obj[k] +
+            '}'.repeat(keys.length)
+        )
+      );
+    } else acc[k] = obj[k];
+    return acc;
+  }, {});
+console.log(unflattenObject({ 'a.b.c': 1, d: 1 }));
+
+// __________________________________________________28___________________________________________________________________________
+
+// Write a JavaScript program 
+// to create a function that accepts up to one argument, ignoring any additional arguments.
+
+// Note: Call the provided function, fn, with just the first argument given.
+
+const unary = fn => val => fn(val);
+console.log(['6', '8', '10'].map(unary(parseInt)));
+
+// __________________________________________________29_____________________________________________________________________
+
+// Write a JavaScript program to convert a string to snake case.
+
+// Note: Break the string into words and combine them adding _ as a separator, using a regexp.
+
+const toSnakeCase = str =>
+  str &&
+  str
+    .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
+    .map(x => x.toLowerCase())
+    .join('_');
+
+console.log(toSnakeCase('camelCase'));
+console.log(toSnakeCase('some text'));
+console.log(toSnakeCase('some-mixed_string With spaces_underscores-and-hyphens'));
+console.log(toSnakeCase('AllThe-small Things'));
+console.log(toSnakeCase('IAmListeningToFMWhileLoadingDifferentURLOnMyBrowserAndAlsoEditingSomeXMLAndHTML'));

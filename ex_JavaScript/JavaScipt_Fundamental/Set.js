@@ -32,4 +32,12 @@ const differenceBy = (a, b, fn) => {
 
 console.log(differenceBy([2.1, 1.2], [2.3, 3.4], Math.floor));
 console.log(differenceBy([{ x: 2 }, { x: 1 }], [{ x: 1 }], v => v.x));
-  
+
+// ________________________________________3___________________________________________________________________________________________________________
+
+// Write a JavaScript program to get every element that exists in any of the two arrays once.
+// Note: Create a Set with all values of a and b and convert to an array.
+
+const union = (a, b) => Array.from(new Set([...a, ...b]));
+console.log(union([1, 2, 3], [4, 3, 2]));
+console.log(union([1, 2, 3], [1, 2, 3]));

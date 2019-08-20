@@ -263,3 +263,40 @@ console.log(mask(1234567890, -4, '$'));
 const words = (str, pattern = /[^a-zA-Z-]+/) => str.split(pattern).filter(Boolean);
 console.log(words('I love javaScript!!')); 
 console.log(words('python, java, php'));
+
+// _____________________________________________17_________________________________________________________________
+
+// Write a JavaScript program to unescape escaped HTML characters.
+
+const unescapeHTML = str =>
+  str.replace(
+    /&|<|>|'|"/g,
+    tag =>
+      ({
+        '&': '&',
+        '<': '<',
+        '>': '>',
+        '\'': "'",
+        '"': '"'
+      }[tag] || tag)
+  );
+console.log(unescapeHTML('<a href="#">Me & you</a>'));
+
+// ________________________________________________18_______________________________________________________________________
+
+// Write a JavaScript program to convert a string to snake case.
+
+// Note: Break the string into words and combine them adding _ as a separator, using a regexp.
+
+const toSnakeCase = str =>
+  str &&
+  str
+    .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
+    .map(x => x.toLowerCase())
+    .join('_');
+
+console.log(toSnakeCase('camelCase'));
+console.log(toSnakeCase('some text'));
+console.log(toSnakeCase('some-mixed_string With spaces_underscores-and-hyphens'));
+console.log(toSnakeCase('AllThe-small Things'));
+console.log(toSnakeCase('IAmListeningToFMWhileLoadingDifferentURLOnMyBrowserAndAlsoEditingSomeXMLAndHTML'));

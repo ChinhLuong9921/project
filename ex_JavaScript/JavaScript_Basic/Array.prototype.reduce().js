@@ -548,3 +548,53 @@ const find_num_appears_ = arr =>
   arr.reduce((acc, val) => (acc[val] = (acc[val] || 0) + 1, acc), {});
 
 console.log(find_num_appears_([1, 2, 3, 5, 67, 7, 8, 99, 1, 2, 3, 55, 67]));
+
+// _______________________________________35_________________________________________________________________________________________
+
+// Write a JavaScript program to unflatten an object with the paths for keys.
+
+const unflattenObject = obj =>
+  Object.keys(obj).reduce((acc, k) => {
+    if (k.indexOf('.') !== -1) {
+      const keys = k.split('.');
+      Object.assign(
+        acc,
+        JSON.parse(
+          '{' +
+            keys.map((v, i) => (i !== keys.length - 1 ? `"${v}":{` : `"${v}":`)).join('') +
+            obj[k] +
+            '}'.repeat(keys.length)
+        )
+      );
+    } else acc[k] = obj[k];
+    return acc;
+  }, {});
+console.log(unflattenObject({ 'a.b.c': 1, d: 1 }));
+
+// __________________________________________36______________________________________________________
+
+// Write a JavaScript program to uncurry a function up to depth n.
+
+const uncurry = (fn, n = 1) => (...args) => {
+  const next = acc => args => args.reduce((x, y) => x(y), acc);
+  if (n > args.length) throw new RangeError('Arguments too few!');
+  return next(fn)(args.slice(0, n));
+};
+const add = x => y => z => x + y + z;
+const uncurriedAdd = uncurry(add, 3);
+console.log(uncurriedAdd(1, 2, 3));
+
+// ______________________________________________37____________________________________________________________________
+
+// Write a JavaScript program 
+// to apply a function against an accumulator and each key in the object (from left to right).
+
+const transform = (obj, fn, acc) => Object.keys(obj).reduce((a, k) => fn(a, obj[k], k, obj), acc);
+console.log(transform(
+  { a: 1, b: 2, c: 1 },
+  (r, v, k) => {
+    (r[v] || (r[v] = [])).push(k);
+    return r;
+  },
+  {}
+));

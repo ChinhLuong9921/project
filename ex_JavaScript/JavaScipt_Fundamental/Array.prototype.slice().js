@@ -116,3 +116,28 @@ console.log(offset([1, 2, 3, 4, 5], -2));
 const nthElement = (arr, n = 0) => (n > 0 ? arr.slice(n, n + 1) : arr.slice(n))[0];
 console.log(nthElement(['a', 'b', 'c'], 1));
 console.log(nthElement(['a', 'b', 'b'], -3));
+
+// ________________________________________________10________________________________________________
+
+// Write a JavaScript program to uncurry a function up to depth n.
+
+const uncurry = (fn, n = 1) => (...args) => {
+  const next = acc => args => args.reduce((x, y) => x(y), acc);
+  if (n > args.length) throw new RangeError('Arguments too few!');
+  return next(fn)(args.slice(0, n));
+};
+const add = x => y => z => x + y + z;
+const uncurriedAdd = uncurry(add, 3);
+console.log(uncurriedAdd(1, 2, 3));
+
+// ______________________________________________12_________________________________________________________________________________
+
+// Write a JavaScript program to truncate a string up to a specified length.
+
+// Note: Determine if the string's length is greater than num. 
+// Return the string truncated to the desired length, with '...' appended to the end or the original string.
+
+const truncateString = (str, num) =>
+  str.length > num ? str.slice(0, num > 3 ? num - 3 : num) + '...' : str;
+
+console.log(truncateString('boomerang', 7));
