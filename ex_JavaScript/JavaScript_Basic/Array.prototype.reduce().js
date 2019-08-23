@@ -598,3 +598,48 @@ console.log(transform(
   },
   {}
 ));
+
+// _______________________________________________38_____________________________________________________________________________________
+
+// Write a JavaScript program 
+// to reduce a given Array-like into a value hash (keyed data store).
+
+// Note: Given an Iterable or Array-like structure, 
+// call Array.prototype.reduce.call() on the provided object to step over it 
+// and return an Object, keyed by the reference value.
+
+const toHash = (object, key) =>
+  Array.prototype.reduce.call(
+    object,
+    (acc, data, index) => ((acc[!key ? index : data[key]] = data), acc),
+    {}
+  );
+toHash([4, 3, 2, 1]); // { 0: 4, 1: 3, 2: 2, 1: 1 }
+toHash([{ a: 'label' }], 'a'); // { label: { a: 'label' } }
+// A more in depth example:
+let users = [{ id: 1, first: 'Jon' }, { id: 2, first: 'Joe' }, { id: 3, first: 'Moe' }];
+let managers = [{ manager: 1, employees: [2, 3] }];
+// We use function here because we want a bindable reference, but a closure referencing the hash would work, too.
+managers.forEach(
+  manager =>
+    (manager.employees = manager.employees.map(function(id) {
+      return this[id];
+    }, toHash(users, 'id')))
+);
+managers; // [ { manager:1, employees: [ { id: 2, first: "Joe" }, { id: 3, first: "Moe" } ] } ]
+console.log(managers);
+
+// _______________________________________________39______________________________________________
+
+// Write a JavaScript program 
+// to get the sum of the powers of all the numbers from start to end (both inclusive).
+
+const sumPower = (end, power = 2, start = 1) =>
+  Array(end + 1 - start)
+    .fill(0)
+    .map((x, i) => (i + start) ** power)
+    .reduce((a, b) => a + b, 0);
+
+console.log(sumPower(10));
+console.log(sumPower(10, 3));
+console.log(sumPower(10, 3, 5));

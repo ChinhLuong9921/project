@@ -26,3 +26,21 @@ console.log(union_With([1, 2, 3, 4], [1, 2, 3, 4, 5], (a, b) => Math.round(a) ==
 
 const differenceWith = (arr, val, comp) => arr.filter(a => val.findIndex(b => comp(a, b)) === -1);
 console.log(differenceWith([1, 1.2, 1.5, 3, 0], [1.9, 3, 0], (a, b) => Math.round(a) === Math.round(b)));
+
+// ___________________________________________3__________________________________________________
+
+// Write a JavaScript program 
+// to get the symmetric difference between two given arrays, 
+// using a provided function as a comparator.
+
+const symmetricDifferenceWith = (arr, val, comp) => [
+    ...arr.filter(a => val.findIndex(b => comp(a, b)) === -1),
+    ...val.filter(a => arr.findIndex(b => comp(a, b)) === -1)
+];
+  
+console.log(symmetricDifferenceWith(
+    [1, 1.2, 1.5, 3, 0],
+    [1.9, 3, 0, 3.9],
+    (a, b) => Math.round(a) === Math.round(b)
+));
+  

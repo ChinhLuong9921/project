@@ -1,20 +1,11 @@
-// ______________________________________________________________________________________________________________________________________________
+// _________________________________________________________________________________________________
 
-// Write a JavaScript program 
-// to implement the Luhn Algorithm used to validate a variety of identification numbers, 
-// such as credit card numbers, IMEI numbers, National Provider Identifier numbers etc.
+// Write a JavaScript program to get the symmetric difference between two given arrays.
 
-const luhnCheck = num => {
-  let arr = (num + '')
-    .split('')
-    .reverse()
-    .map(x => parseInt(x));
-  let lastDigit = arr.splice(0, 1)[0];
-  let sum = arr.reduce((acc, val, i) => (i % 2 !== 0 ? acc + val : acc + ((val * 2) % 9) || 9), 0);
-  sum += lastDigit;
-  return sum % 10 === 0;
+const symmetricDifference = (a, b) => {
+  const sA = new Set(a),
+    sB = new Set(b);
+  return [...a.filter(x => !sB.has(x)), ...b.filter(x => !sA.has(x))];
 };
 
-console.log(luhnCheck('4485275742308327'));
-console.log(luhnCheck(6011329933655299));
-console.log(luhnCheck(123456789));
+console.log(symmetricDifference([1, 2, 3], [1, 2, 4]));

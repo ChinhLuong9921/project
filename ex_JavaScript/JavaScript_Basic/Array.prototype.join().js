@@ -267,3 +267,23 @@ console.log(toSnakeCase('some text'));
 console.log(toSnakeCase('some-mixed_string With spaces_underscores-and-hyphens'));
 console.log(toSnakeCase('AllThe-small Things'));
 console.log(toSnakeCase('IAmListeningToFMWhileLoadingDifferentURLOnMyBrowserAndAlsoEditingSomeXMLAndHTML'));
+
+// ______________________________________________11_________________________________________________________________________________________
+
+// Write a JavaScript program to convert a string to kebab case.
+
+// Note: Break the string into words and combine them adding - as a separator, 
+// using a regexp.
+
+const toKebabCase = str =>
+  str &&
+  str
+    .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
+    .map(x => x.toLowerCase())
+    .join('-');
+
+console.log(toKebabCase('camelCase'));
+console.log(toKebabCase('some text'));
+console.log(toKebabCase('some-mixed_string With spaces_underscores-and-hyphens'));
+console.log(toKebabCase('AllThe-small Things'));
+console.log(toKebabCase('IAmListeningToFMWhileLoadingDifferentURLOnMyBrowserAndAlsoEditingSomeXMLAndHTML'));

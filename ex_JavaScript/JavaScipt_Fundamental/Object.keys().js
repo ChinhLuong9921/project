@@ -26,7 +26,6 @@ const omit = (obj, arr) =>
 
 console.log(omit({a: 1, b: 2, c: 3}, ['a']));
 console.log(omit({a: 'abc', abc: 'abcd', abcd: 'abcde'}, ['a', 'abcd']));
-// ??????????????
 
 // __________________________________3________________________________________________________________________________
 
@@ -93,22 +92,28 @@ console.log(functions(new Foo(), true));
 
 const deepClone = obj => {
   let clone = Object.assign({}, obj);
-  Object.keys(clone).forEach(
-    key => (clone[key] = typeof obj[key] === 'object' ? deepClone(obj[key]) : obj[key])
-  );
+  Object
+    .keys(clone)
+    .forEach(
+      key => (clone[key] = typeof obj[key] === 'object' ? deepClone(obj[key]) : obj[key])
+    );
   return Array.isArray(obj) ? (clone.length = obj.length) && Array.from(clone) : clone;
 };
-const a = { foo: 'bar', obj: { a: 1, b: 2 } };
-const b = deepClone(a); // a !== b, a.obj !== b.obj
-console.log(b)
+const a = {foo: 'bar', obj: {a: 1, b: 2}};
+const b = deepClone(a);
+console.log(b);
 
 // _____________________________________7_________________________________________________________________________________________________
 
 // Write a JavaScript program to iterate over all own properties of an object, 
 // running a callback for each one.
 
-const forOwn = (obj, fn) => Object.keys(obj).forEach(key => fn(obj[key], key, obj));
-forOwn({ foo: 'bar', a: 1 }, v => console.log(v)); // 'bar', 1
+const forOwn = (obj, fn) => 
+  Object
+    .keys(obj)
+    .forEach(k => fn(obj[k], obj, k));
+
+forOwn({foo: 'bar', a: 1}, v => console.log(v));
 
 // ________________________________________8___________________________________________________________________________________________________________
 
@@ -117,13 +122,15 @@ forOwn({ foo: 'bar', a: 1 }, v => console.log(v)); // 'bar', 1
 // The corresponding inverted value of each inverted key is an array of keys responsible for generating the inverted value. 
 // If a function is supplied, it is applied to each inverted key.
 
-const invertKeyValues = (obj, fn) =>
-  Object.keys(obj).reduce((acc, key) => {
-    const val = fn ? fn(obj[key]) : obj[key];
-    acc[val] = acc[val] || [];
-    acc[val].push(key);
-    return acc;
-  }, {});
+const invertKeyValues = (obj, fn) => 
+  Object
+    .keys(obj)
+    .reduce((acc, key) => {
+      const val = fn ? fn(obj[key]) : obj[key];
+      acc[val] = acc[val] || [];
+      acc[val].push(key);
+      return acc;
+    }, {});
 
 console.log(invertKeyValues({ a: 1, b: 2, c: 1 }));
 console.log(invertKeyValues({ a: 1, b: 2, c: 1 }, value => 'group' + value));
@@ -135,10 +142,9 @@ console.log(invertKeyValues({ a: 1, b: 2, c: 1 }, value => 'group' + value));
 // by running the provided function for each key and the same values as the provided object.
 
 const mapKeys = (obj, fn) =>
-  Object.keys(obj).reduce((acc, k) => {
-    acc[fn(obj[k], k, obj)] = obj[k];
-    return acc;
-  }, {});
+  Object
+    .keys(obj)
+    .reduce((acc, k) => (acc[fn(obj[k], k, obj)] = obj[k], acc), {});
 
 console.log(mapKeys({ a: 1, b: 2 }, (val, key) => key + val));
 
@@ -148,15 +154,16 @@ console.log(mapKeys({ a: 1, b: 2 }, (val, key) => key + val));
 // to create an object with the same keys as the provided object and values generated 
 // by running the provided function for each value.
 
-const mapValues = (obj, fn) =>
-  Object.keys(obj).reduce((acc, k) => {
-    acc[k] = fn(obj[k], k, obj);
-    return acc;
-  }, {});
+const mapValues = (obj, fn) => 
+  Object
+    .keys(obj)
+    .reduce((acc, k) => (acc[k] = fn(obj[k], k, obj), acc), {});
+
 const users = {
-  fred: { user: 'fred', age: 40 },
-  pebbles: { user: 'pebbles', age: 1 }
+  fred: {user: 'fred', age: 40},
+  pebbles: {user: 'pebbles', age: 1}
 };
+
 console.log(mapValues(users, u => u.age));
 
 // _____________________________________________11__________________________________________________________________________
@@ -166,31 +173,39 @@ console.log(mapValues(users, u => u.age));
 // The function is invoked with two arguments: (value, key).
 
 const pickBy = (obj, fn) =>
-  Object.keys(obj)
-    .filter(k => fn(obj[k], k))
-    .reduce((acc, key) => ((acc[key] = obj[key]), acc), {});
+  Object
+    .keys(obj)
+    .filter(k => fn(obj[k], k, obj))
+    .reduce((acc, key) => (acc[key] = obj[key], acc), {});
+    
 console.log(pickBy({ a: 1, b: '2', c: 3 }, x => typeof x === 'number'));
 
 // ______________________________________________12__________________________________________________________________________________
 
 // Write a JavaScript program to unflatten an object with the paths for keys.
 
-const unflattenObject = obj =>
-  Object.keys(obj).reduce((acc, k) => {
-    if (k.indexOf('.') !== -1) {
-      const keys = k.split('.');
-      Object.assign(
-        acc,
-        JSON.parse(
-          '{' +
-            keys.map((v, i) => (i !== keys.length - 1 ? `"${v}":{` : `"${v}":`)).join('') +
-            obj[k] +
-            '}'.repeat(keys.length)
-        )
-      );
-    } else acc[k] = obj[k];
-    return acc;
-  }, {});
+
+const unflattenObject = obj => 
+  Object
+    .keys(obj)
+    .reduce((acc, k) => {
+      if (k.indexOf('.') !== -1) {
+        const keys = k.split('.');
+        Object.assign(
+          acc,
+          JSON.parse(
+            '{' +
+              keys.map((v, i) => (i !== keys.length - 1 ? `"${v}":{` : `"${v}":`)).join('') +
+              obj[k] +
+              '}'.repeat(keys.length)
+              // ??????????????
+          )
+        );
+      } else acc[k] = obj[k];
+      return acc;
+    }, {});
+
+// console.log(unflattenObject({'a.b.c': 1, d: 1}));
 console.log(unflattenObject({ 'a.b.c': 1, d: 1 }));
 
 // ________________________________________________13__________________________________________________________________
@@ -203,7 +218,22 @@ console.log(transform(
   { a: 1, b: 2, c: 1 },
   (r, v, k) => {
     (r[v] || (r[v] = [])).push(k);
+    // ??????????
     return r;
   },
   {}
 ));
+
+// _____________________________________________________14__________________________________________________________
+
+// Write a JavaScript program 
+// to get removed elements from the end of an given array until the passed function returns true.
+ 
+const takeRightWhile = (arr, func) => {
+  for (let i of arr.reverse().keys())
+    if (func(arr[i])) return arr.reverse().slice(arr.length - i, arr.length);
+  return arr;
+  // ??????????
+};
+
+console.log(takeRightWhile([1, 2, 3, 4], n => n < 3));

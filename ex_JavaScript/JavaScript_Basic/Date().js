@@ -44,7 +44,7 @@ if (hours === 0 && prepand === ' PM ') {
 console.log('Today is: ' + dayList[day]);
 console.log(`Current time is: ${hours}${prepand} : ${minutes} : ${seconds}`);
 
-// _________________________________________________________________________________________________________________________
+// __________________________________________2_______________________________________________________________________________
 
 // Write a JavaScript program to convert an integer to a suffixed string, 
 // adding am or pm based on its value.
@@ -63,7 +63,7 @@ console.log(get_Meridiem_Suffix_Of_Integer(11));
 console.log(get_Meridiem_Suffix_Of_Integer(13));
 console.log(get_Meridiem_Suffix_Of_Integer(25));
 
-// _________________________________________2______________________________________________________________________________
+// _________________________________________3______________________________________________________________________________
 
 /*
 Write a JavaScript program to get the current date.
@@ -79,7 +79,7 @@ month = (month < 10) ? '0'+month : month;
 
 console.log(`${day}/${month}/${today.getFullYear()}`);
 
-// _________________________________________3_______________________________________________________________________________________
+// ________________________________________4_______________________________________________________________________________________
 
 // Write a JavaScript program to find 
 // which 1st January is being a Sunday between 2014 and 2050.
@@ -91,7 +91,7 @@ for (let year = 2014; year <= 2050; year++) {
     if (sunday.getDay() === 0) console.log(`1st January is being a Sunday in ${year}`);
 }
 
-// _________________________________________4________________________________________________________________________________
+// _________________________________________5________________________________________________________________________________
 
 // Write a JavaScript program to calculate number of days left 
 // until next Christmas (25/12).
@@ -106,7 +106,7 @@ if (today.getMonth() > 11 && today.getDate() > 25) {
 
 console.log(`${Math.ceil((cmas.getTime() - today.getTime()) / oneDay)} days left until Christmas!`);
 
-// ________________________________________5_____________________________________________________________________________________________
+// ________________________________________6_____________________________________________________________________________________________
 
 // Write a JavaScript program 
 // to perform a deep comparison between two values to determine if they are equivalent.
@@ -133,7 +133,7 @@ const equals = (a, b) => {
   
 console.log(equals({ a: [2, { e: 3 }], b: [4], c: 'foo' }, { a: [2, { e: 3 }], b: [4], c: 'foo' }));
   
-// ______________________________________________6___________________________________________________________
+// ______________________________________________7___________________________________________________________
 
 // Write a JavaScript program to create tomorrow's date in a string representation.
 

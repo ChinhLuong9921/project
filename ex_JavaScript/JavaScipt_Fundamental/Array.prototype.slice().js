@@ -141,3 +141,45 @@ const truncateString = (str, num) =>
   str.length > num ? str.slice(0, num > 3 ? num - 3 : num) + '...' : str;
 
 console.log(truncateString('boomerang', 7));
+
+// __________________________________________________13___________________________________________________
+
+// Write a JavaScript program 
+// to get removed elements of an given array until the passed function returns true.
+
+const takeWhile = (arr, func) => {
+  for (const [i, val] of arr.entries()) if (func(val)) return arr.slice(0, i);
+  return arr;
+};
+
+console.log(takeWhile([1, 2, 3, 4], n => n >= 3));
+
+// ____________________________________________________14___________________________________________________________
+
+// Write a JavaScript program 
+// to get removed elements from the end of an given array until the passed function returns true.
+ 
+const takeRightWhile = (arr, func) => {
+  for (let i of arr.reverse().keys())
+    if (func(arr[i])) return arr.reverse().slice(arr.length - i, arr.length);
+  return arr;
+};
+
+console.log(takeRightWhile([1, 2, 3, 4], n => n < 3));
+
+// ______________________________________________________15___________________________________________________
+
+// Write a JavaScript program to remove n elements from the end of an given array.
+
+const takeRight = (arr, n = 1) => arr.slice(arr.length - n, arr.length);
+
+console.log(takeRight([1, 2, 3], 2));
+console.log(takeRight([1, 2, 3]));
+
+// ______________________________________________________16_____________________________________________________________
+
+// Write a JavaScript program to get an array with n elements removed from the beginning from a given array.
+
+const take = (arr, n = 1) => arr.slice(0, n);
+console.log(take([1, 2, 3], 5));
+console.log(take([1, 2, 3], 0));

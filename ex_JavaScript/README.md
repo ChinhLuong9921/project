@@ -5,6 +5,7 @@
   * 2: pingPongGame
   * 3: snakeGame
   * 4: ex_JavaScript
+  * 5: TypeScript
 * x.1.x: tên file bên trong project
 * x.x.1: lần update file trong project
 
@@ -44,3 +45,4 @@
 * x.13.x: JavaScript_Validation_with_Regular_expression
 * x.14.x: JavaScript_Searching_and_Sorting_Algorithm
 * x.15.x: JavaScript_Conditional_Statements_and_loops 
+* x.16.x: _challegens

@@ -102,3 +102,33 @@ const unzipWith = (arr, fn) =>
     .map(val => fn(...val));
 
 console.log(unzipWith([[1, 10, 100], [2, 20, 200]], (...args) => args.reduce((acc, v) => acc + v, 0)));
+
+// __________________________________________7__________________________________________________________________________________________
+
+// Write a JavaScript program 
+// to reduce a given Array-like into a value hash (keyed data store).
+
+// Note: Given an Iterable or Array-like structure, 
+// call Array.prototype.reduce.call() on the provided object to step over it 
+// and return an Object, keyed by the reference value.
+
+const toHash = (object, key) =>
+  Array.prototype.reduce.call(
+    object,
+    (acc, data, index) => ((acc[!key ? index : data[key]] = data), acc),
+    {}
+  );
+toHash([4, 3, 2, 1]); // { 0: 4, 1: 3, 2: 2, 1: 1 }
+toHash([{ a: 'label' }], 'a'); // { label: { a: 'label' } }
+// A more in depth example:
+let users = [{ id: 1, first: 'Jon' }, { id: 2, first: 'Joe' }, { id: 3, first: 'Moe' }];
+let managers = [{ manager: 1, employees: [2, 3] }];
+// We use function here because we want a bindable reference, but a closure referencing the hash would work, too.
+managers.forEach(
+  manager =>
+    (manager.employees = manager.employees.map(function(id) {
+      return this[id];
+    }, toHash(users, 'id')))
+);
+managers; // [ { manager:1, employees: [ { id: 2, first: "Joe" }, { id: 3, first: "Moe" } ] } ]
+console.log(managers);

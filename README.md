@@ -5,10 +5,9 @@
   * 2: pingPongGame
   * 3: snakeGame
   * 4: ex_JavaScript
-  * 4: TypeScript (vd 18)
+  * 5: TypeScript (vd 31)
 * x.1.x: tên file bên trong project
 * x.x.1: lần update file trong project
-
 
 ## Commit message
 * feat: 

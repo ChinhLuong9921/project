@@ -231,3 +231,45 @@ console.log(reducedFilter(data, ['id', 'name'], item => item.age > 24));
 const words = (str, pattern = /[^a-zA-Z-]+/) => str.split(pattern).filter(Boolean);
 console.log(words('I love javaScript!!')); 
 console.log(words('python, java, php'));
+
+// ________________________________________________15_____________________________________________
+
+// Write a JavaScript program 
+// to get the symmetric difference between two given arrays, 
+// using a provided function as a comparator.
+
+const symmetricDifferenceWith = (arr, val, comp) => [
+  ...arr.filter(a => val.findIndex(b => comp(a, b)) === -1),
+  ...val.filter(a => arr.findIndex(b => comp(a, b)) === -1)
+];
+
+console.log(symmetricDifferenceWith(
+  [1, 1.2, 1.5, 3, 0],
+  [1.9, 3, 0, 3.9],
+  (a, b) => Math.round(a) === Math.round(b)
+));
+
+// __________________________________________________16_____________________________________________________
+
+// Write a JavaScript program 
+// to get the symmetric difference between two given arrays, 
+// after applying the provided function to each array element of both.
+
+const symmetricDifferenceBy = (a, b, fn) => {
+  const sA = new Set(a.map(v => fn(v))),
+    sB = new Set(b.map(v => fn(v)));
+  return [...a.filter(x => !sB.has(fn(x))), ...b.filter(x => !sA.has(fn(x)))];
+};
+console.log(symmetricDifferenceBy([2.1, 1.2], [2.3, 3.4], Math.floor));
+
+// _____________________________________________________17____________________________________________
+
+// Write a JavaScript program to get the symmetric difference between two given arrays.
+
+const symmetricDifference = (a, b) => {
+  const sA = new Set(a),
+    sB = new Set(b);
+  return [...a.filter(x => !sB.has(x)), ...b.filter(x => !sA.has(x))];
+};
+
+console.log(symmetricDifference([1, 2, 3], [1, 2, 4]));
